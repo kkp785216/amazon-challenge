@@ -1,0 +1,84 @@
+.home {
+    background-color: #eaeded;
+    .home__flash {
+        position: relative;
+        height: 250px;
+
+        .home__flash__single {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+
+            img {
+                mask-image: linear-gradient(#eaeded, #eaeded, transparent);
+                width: 120%;
+            }
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            padding: 12px 23px;
+            height: 250px;
+            box-sizing: content-box;
+            position: absolute;
+            top: 24px;
+            border-radius: 3px;
+            border: 2px solid transparent;
+            outline: 2px solid transparent;
+
+            &:active,
+            &:focus {
+                border-color: #007185;
+                outline-color: white;
+            }
+        }
+
+        .swiper-button-prev {
+            left: 2px;
+        }
+
+        .swiper-button-next {
+            right: 2px;
+        }
+    }
+
+    .home__products{
+        position: relative;
+        z-index: 1;
+        .home__products__row{
+            display: flex;
+            margin: 17px;
+            .home__products__col{
+                background-color: white;
+                flex: auto;
+                margin-right: 17px;
+                padding: 21px;
+                &:last-child{
+                    margin-right: 0;
+                }
+                .home__products__name{
+                    display: block;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                .home__products__price__cross{
+                    margin-right: 17px;
+                    font-size: 14px;
+                }
+                .home__products__price{
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #b12704;
+                }
+                .home__products__img{
+                    display: block;
+                    margin: auto;
+                }
+                .home__products__cartBtn{
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
