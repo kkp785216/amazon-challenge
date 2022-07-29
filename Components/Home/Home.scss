@@ -1,0 +1,115 @@
+.home {
+    background-color: #eaeded;
+
+    .home__flash {
+        position: relative;
+        height: 17vw;
+
+        .home__flash__single {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+
+            img {
+                mask-image: linear-gradient(#eaeded, #eaeded, transparent);
+                width: 111%;
+            }
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            padding: 4.5px 23px;
+            height: 17vw;
+            box-sizing: content-box;
+            position: absolute;
+            top: 24px;
+            border-radius: 3px;
+            border: 2px solid transparent;
+            outline: 2px solid transparent;
+
+            &:active,
+            &:focus {
+                border-color: #007185;
+                outline-color: white;
+            }
+        }
+
+        .swiper-button-prev {
+            left: 2px;
+        }
+
+        .swiper-button-next {
+            right: 2px;
+        }
+    }
+
+    .home__products {
+        position: relative;
+        z-index: 1;
+        padding: 17px;
+        padding-top: 0;
+
+        .home__products__row {
+            display: flex;
+            margin-top: 17px;
+            margin-bottom: 17px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .home__products__col {
+                background-color: white;
+                flex: 1;
+                margin-right: 17px;
+                padding: 21px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                .home__products__heading{
+                    font-size: 21px;
+                    font-weight: 600;
+                    display: block;
+                }
+
+                .home__products__name {
+                    display: block;
+                    font-size: 14px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                }
+
+                .home__products__price__cross {
+                    margin-right: 17px;
+                    font-size: 14px;
+                }
+
+                .home__products__price {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #b12704;
+                }
+
+                .home__products__img {
+                    display: block;
+                    margin: 33px auto;
+                    max-height: 200px;
+                }
+
+                .home__products__cartBtn {
+                    display: block;
+                    background-color: #febd69;
+                    width: fit-content;
+                    text-align: center;
+                    margin: auto;
+                    padding: 5px 53px;
+                    margin-top: 23px;
+                }
+            }
+        }
+    }
+}
