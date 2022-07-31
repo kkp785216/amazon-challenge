@@ -63,6 +63,9 @@
                 flex: 1;
                 margin-right: 17px;
                 padding: 21px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
 
                 &:last-child {
                     margin-right: 0;
@@ -96,8 +99,10 @@
 
                 .home__products__img {
                     display: block;
-                    margin: 33px auto;
+                    margin: auto;
                     max-height: 200px;
+                    padding: 33px;
+                    box-sizing: content-box;
                 }
 
                 .home__products__cartBtn {
@@ -105,7 +110,7 @@
                     background-color: #febd69;
                     width: fit-content;
                     text-align: center;
-                    margin: auto;
+                    margin: 0 auto;
                     padding: 5px 53px;
                     margin-top: 23px;
                 }

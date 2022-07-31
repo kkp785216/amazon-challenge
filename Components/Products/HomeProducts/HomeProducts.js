@@ -4,21 +4,22 @@ import product2 from '../../../Assets/home-products/2.jpg'
 import product3 from '../../../Assets/home-products/3.jpg'
 import product4 from '../../../Assets/home-products/4.jpg'
 import product5 from '../../../Assets/home-products/5.jpg'
-import Image from 'next/image'
 
-export const HomeProductsLayout = (props) => {
+const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price } = props
     return (
         <div className="home__products__col">
-            <span className='home__products__heading'>{heading}</span>
-            <del className='home__products__price__cross'>
-                <small>₹</small>
-                {fakePrice}
-            </del>
-            <span className='home__products__price'>
-                <small>₹</small>
-                {price}/-
-            </span>
+            <div>
+                <span className='home__products__heading'>{heading}</span>
+                <del className='home__products__price__cross'>
+                    <small>₹</small>
+                    {fakePrice}
+                </del>
+                <span className='home__products__price'>
+                    <small>₹</small>
+                    {price}/-
+                </span>
+            </div>
             <img className='home__products__img' src={imgUrl.src} alt="" />
             <span className='home__products__name'>{name}</span>
             <span className='home__products__cartBtn'>Add to Cart</span>
