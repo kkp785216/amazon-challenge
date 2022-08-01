@@ -1,18 +1,35 @@
 import '../styles/globals.css'
-import '../Components/Home/Home.scss'
-import '../Components/Header/Header.scss'
+import '../styles/Home.scss'
+import '../styles/Header.scss'
+import '../styles/Checkout.scss'
 import Header from '../Components/Header/Header'
+import { useRouter } from 'next/router'
 
-const Layout = (props) => {
-  return (<>
-    <Header />
-    {props.children}
-  </>)
+export const Layout = (props) => {
+  const router = useRouter()
+  console.log(router)
+  switch (router.asPath) {
+    case '/':
+      return (<>
+        <Header />
+        {props.children}
+      </>)
+    case '/checkout':
+      return (<>
+        <Header />
+        {props.children}
+      </>)
+    default:
+      return (<>
+        {props.children}
+      </>)
+
+  }
 }
 
 function MyApp({ Component, pageProps }) {
   return (<>
-    <Layout>
+    <Layout >
       <Component {...pageProps} />
     </Layout>
   </>)
