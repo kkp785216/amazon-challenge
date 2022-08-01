@@ -2,11 +2,12 @@ import '../styles/globals.css'
 import '../styles/Home.scss'
 import '../styles/Header.scss'
 import '../styles/Checkout.scss'
-import Header from '../Components/Header'
+import Header from '../components/Header'
 import { useRouter } from 'next/router'
 
 export const Layout = (props) => {
-  const router = useRouter()
+  const router = useRouter();
+  const {singleProduct} = router.query;
   switch (router.asPath) {
     case '/':
       return (<>
@@ -14,6 +15,11 @@ export const Layout = (props) => {
         {props.children}
       </>)
     case '/checkout':
+      return (<>
+        <Header />
+        {props.children}
+      </>)
+    case `/${singleProduct}`:
       return (<>
         <Header />
         {props.children}
