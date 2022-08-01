@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eaeded;
 }
 
 code {
@@ -21,4 +22,18 @@ code {
 a{
   color: inherit;
   text-decoration: none;
+}
+
+.flex{
+  display: flex;
+}
+.block{
+  display: block;
+}
+
+.mr-7{
+  margin-right: 7px;
+}
+.mr-21{
+  margin-right: 21px;
 }

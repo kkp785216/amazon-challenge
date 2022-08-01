@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../Assets/logo.png'
+import logo from '../Assets/logo.png'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'

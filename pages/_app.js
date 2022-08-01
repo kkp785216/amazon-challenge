@@ -2,12 +2,11 @@ import '../styles/globals.css'
 import '../styles/Home.scss'
 import '../styles/Header.scss'
 import '../styles/Checkout.scss'
-import Header from '../Components/Header/Header'
+import Header from '../Components/Header'
 import { useRouter } from 'next/router'
 
 export const Layout = (props) => {
   const router = useRouter()
-  console.log(router)
   switch (router.asPath) {
     case '/':
       return (<>

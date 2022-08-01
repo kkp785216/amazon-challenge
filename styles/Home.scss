@@ -1,6 +1,4 @@
 .home {
-    background-color: #eaeded;
-
     .home__flash {
         position: relative;
         height: 17vw;
@@ -71,7 +69,7 @@
                     margin-right: 0;
                 }
 
-                .home__products__heading{
+                .home__products__heading {
                     font-size: 21px;
                     font-weight: 600;
                     display: block;
@@ -106,13 +104,22 @@
                 }
 
                 .home__products__cartBtn {
-                    display: block;
+                    padding: 5px 53px;
+                    margin: 0 auto;
+                    margin-top: 23px;
                     background-color: #febd69;
                     width: fit-content;
-                    text-align: center;
-                    margin: 0 auto;
-                    padding: 5px 53px;
-                    margin-top: 23px;
+                    font-size: 14px;
+                    border: 1px solid #ffb048;
+                    border-radius: 2px;
+                    display: block;
+                    margin-top: 11px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #ffac3e;
+                        border-color: #fda129;
+                    }
                 }
             }
         }

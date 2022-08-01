@@ -20,14 +20,14 @@ const HomeProductsLayout = (props) => {
                     {price}/-
                 </span>
             </div>
-            <img className='home__products__img' src={imgUrl.src} alt="" />
+            <img className='home__products__img' src={imgUrl.src?imgUrl.src:imgUrl} alt={name} />
             <span className='home__products__name'>{name}</span>
             <span className='home__products__cartBtn'>Add to Cart</span>
         </div>
     )
 }
 
-const HomeProducts = () => {
+const HomeProduct1 = () => {
     return (
         <div className="home__products">
             <div className="home__products__row">
@@ -83,4 +83,4 @@ const HomeProducts = () => {
     )
 }
 
-export default HomeProducts
+export default HomeProduct1

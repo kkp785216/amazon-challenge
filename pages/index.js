@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import HomeProducts from '../Components/Products/HomeProducts/HomeProduct1'
+import HomeProduct1 from '../Components/Products/HomeProducts/HomeProduct1'
 
 const HomeFlash = (props) => {
     const { imgUrl } = props;
@@ -64,7 +64,7 @@ export default function Home() {
                         </SwiperSlide>
                     </Swiper>
                 </div>
-                <HomeProducts />
+                <HomeProduct1 />
             </main>
         </>
     )

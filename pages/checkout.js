@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const checkout = () => {
   return (
@@ -13,12 +14,31 @@ const checkout = () => {
       <div className="checkout">
         <div className="checkout__left">
           <h1>Shoppig Cart</h1>
+          <div className="checkout__table__header">
+            <small>Items</small>
+            <small>Price</small>
+          </div>
           <div className="checkout__products">
-            <CheckoutProduct/>
+            {[...new Array(2)].map((e, i)=>(
+              <CheckoutProduct
+                key={i}
+                imgUrl="https://m.media-amazon.com/images/I/81pSrz0gw2L._AC_AA180_.jpg"
+                name="OPPO F21 Pro (Sunset Orange, 8GB RAM, 128 Storage) with No Cost EMI/Additional Exchange Offers"
+                price="12999"
+              />
+            ))}
           </div>
         </div>
         <div className="checkout__right">
-
+          <div className="checkout__alert">
+            <CheckCircleRoundedIcon />
+            <span>Your order is eligible for FREE Delivery. Select this option at checkout. Details</span>
+          </div>
+          <div className="checkout__subtotal">
+            <span className='subtotal__items'>Subtotal ({2} items):</span>
+            <span className='subtotal__price'>{12999}/-</span>
+          </div>
+          <button className="subtotal__buyBtn">Proceed to Buy</button>
         </div>
       </div>
     </>
