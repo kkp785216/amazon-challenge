@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 
 const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price } = props
