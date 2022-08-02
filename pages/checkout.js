@@ -22,9 +22,10 @@ const checkout = () => {
             {[...new Array(2)].map((e, i)=>(
               <CheckoutProduct
                 key={i}
-                imgUrl="https://m.media-amazon.com/images/I/81pSrz0gw2L._AC_AA180_.jpg"
+                imgUrl="https://m.media-amazon.com/images/I/81C5IjTxTML._AC_UY218_.jpg"
                 name="OPPO F21 Pro (Sunset Orange, 8GB RAM, 128 Storage) with No Cost EMI/Additional Exchange Offers"
-                price="12999"
+                description="Flaunt it your way! Amazing OPPO F21 Pro 5G carries the stunning industry-first Dual Orbit Lights and magical Bokeh Flare Portrait. Worry-free and seamless experience with OPPO Enduring Quality and TÜV SÜD 36-Month Fluency Certification."
+                price="22999"
               />
             ))}
           </div>
