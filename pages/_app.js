@@ -2,8 +2,8 @@ import '../styles/globals.css'
 import '../styles/Home.scss'
 import '../styles/Header.scss'
 import '../styles/Checkout.scss'
-import Header from '../components/Header'
 import { useRouter } from 'next/router'
+import Header from '../Components/Header'
 
 export const Layout = (props) => {
   const router = useRouter();
