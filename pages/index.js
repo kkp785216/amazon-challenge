@@ -1,12 +1,4 @@
 import Head from 'next/head'
-import flash1 from '../Assets/home-flash/1.jpg'
-import flash2 from '../Assets/home-flash/2.jpg'
-import flash3 from '../Assets/home-flash/3.jpg'
-import flash4 from '../Assets/home-flash/4.jpg'
-import flash5 from '../Assets/home-flash/5.jpg'
-import flash6 from '../Assets/home-flash/5.jpg'
-import flash7 from '../Assets/home-flash/7.jpg'
-import flash8 from '../Assets/home-flash/8.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
@@ -17,7 +9,7 @@ const HomeFlash = (props) => {
     const { imgUrl } = props;
     return (
         <div className="home__flash__single">
-            <img src={imgUrl.src} alt="" width='100%' />
+            <img src={imgUrl} alt="Logo" width='100%' />
         </div>
     )
 }
@@ -39,28 +31,28 @@ export default function Home() {
                         navigation
                     >
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash1} />
+                            <HomeFlash imgUrl='/assets/home-flash/1.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash2} />
+                            <HomeFlash imgUrl='/assets/home-flash/2.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash3} />
+                            <HomeFlash imgUrl='/assets/home-flash/3.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash4} />
+                            <HomeFlash imgUrl='/assets/home-flash/4.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash5} />
+                            <HomeFlash imgUrl='/assets/home-flash/5.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash6} />
+                            <HomeFlash imgUrl='/assets/home-flash/6.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash7} />
+                            <HomeFlash imgUrl='/assets/home-flash/7.jpg' />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HomeFlash imgUrl={flash8} />
+                            <HomeFlash imgUrl='/assets/home-flash/8.jpg' />
                         </SwiperSlide>
                     </Swiper>
                 </div>

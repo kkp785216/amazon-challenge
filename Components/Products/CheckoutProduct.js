@@ -5,7 +5,7 @@ const CheckoutProduct = (props) => {
   return (
     <div className='checkout__products__row'>
       <div className='checkout__products__left'>
-        <img src={imgUrl.src ? imgUrl.src : imgUrl} alt={name} />
+        <img src={imgUrl} alt={name} />
       </div>
       <div className='checkout__products__right'>
         <div className='checkout__products__content'>

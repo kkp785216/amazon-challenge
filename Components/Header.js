@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from '../assets/logo.png'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
@@ -7,9 +6,9 @@ import Link from 'next/link'
 const Header = () => {
     return (
         <header className='header'>
-            <Link href='/'><a><img src={logo.src} className='header__logo' alt="" /></a></Link>
+            <Link href='/'><a><img src="/assets/logo.png" className='header__logo' alt="Logo" /></a></Link>
             <div className="header__search">
-                <input type="text" className='header__seachInput' />
+                <input type="text" className='header__seachInput' placeholder='Search' />
                 <SearchIcon className='header__searchIcon' />
             </div>
             <nav className="header__navbar">
