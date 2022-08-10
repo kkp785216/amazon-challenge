@@ -4,10 +4,12 @@ import '../styles/Header.scss'
 import '../styles/Checkout.scss'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
+import { StateProvider } from '../lib/stateProvider'
+import reducer, { initialState } from '../lib/reducer'
 
 export const Layout = (props) => {
   const router = useRouter();
-  const {singleProduct} = router.query;
+  const { singleProduct } = router.query;
   switch (router.asPath) {
     case '/':
       return (<>
@@ -34,9 +36,11 @@ export const Layout = (props) => {
 
 function MyApp({ Component, pageProps }) {
   return (<>
-    <Layout >
-      <Component {...pageProps} />
-    </Layout>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Layout >
+        <Component {...pageProps} />
+      </Layout>
+    </StateProvider>
   </>)
 }
 

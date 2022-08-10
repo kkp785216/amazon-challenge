@@ -15,7 +15,7 @@ const CheckoutProduct = (props) => {
             <span className='checkout__products__name'>{name}</span>
             <span className="checkout__products__rating">
               {[...new Array(5)].map((e, i) => (
-                rating > i ? <StarIcon /> : <StarBorderIcon />
+                rating > i ? <StarIcon key={i}/> : <StarBorderIcon />
               ))}
             </span>
             <p className="checkout__products__description">{description}</p>

@@ -4,6 +4,8 @@ import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import HomeProduct1 from '../Components/Products/HomeProducts/HomeProduct1'
+import { useContext } from 'react';
+import { StateContext } from '../lib/stateProvider';
 
 const HomeFlash = (props) => {
     const { imgUrl } = props;
