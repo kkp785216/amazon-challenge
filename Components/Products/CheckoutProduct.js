@@ -1,9 +1,17 @@
 import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import { useStateValue } from '../../lib/stateProvider';
 
 const CheckoutProduct = (props) => {
-  const { name, imgUrl, price, description, rating = 3 } = props;
+  const { name, imgUrl, price, description, rating = 3, sno } = props;
+  const [state, dispatch] = useStateValue();
+  const removeFromCart = () => {
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      sno: parseInt(sno)
+    })
+  }
   return (
     <div className='checkout__products__row'>
       <div className='checkout__products__left'>
@@ -12,15 +20,15 @@ const CheckoutProduct = (props) => {
       <div className='checkout__products__right'>
         <div className='checkout__products__content'>
           <div>
-            <span className='checkout__products__name'>{name}</span>
+            <span className='checkout__products__name'>{name}{sno}</span>
             <span className="checkout__products__rating">
               {[...new Array(5)].map((e, i) => (
-                rating > i ? <StarIcon key={i}/> : <StarBorderIcon />
+                rating > i ? <StarIcon key={i}/> : <StarBorderIcon key={i}/>
               ))}
             </span>
             <p className="checkout__products__description">{description}</p>
           </div>
-          <span className='home__products__remCartBtn'>Remove from Cart</span>
+          <span className='home__products__remCartBtn' onClick={removeFromCart}>Remove from Cart</span>
         </div>
         <span className='checkout__products__price'>
           <small>₹</small>

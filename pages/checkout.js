@@ -2,8 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { useStateValue } from '../lib/stateProvider';
 
 const checkout = () => {
+  const [state, dispatch] = useStateValue();
   return (
     <>
       <Head>
@@ -19,13 +21,14 @@ const checkout = () => {
             <small>Price</small>
           </div>
           <div className="checkout__products">
-            {[...new Array(2)].map((e, i)=>(
+            {state.cart.map((e, i)=>(
               <CheckoutProduct
-                key={i}
-                imgUrl="https://m.media-amazon.com/images/I/81C5IjTxTML._AC_UY218_.jpg"
-                name="OPPO F21 Pro (Sunset Orange, 8GB RAM, 128 Storage) with No Cost EMI/Additional Exchange Offers"
-                description="Flaunt it your way! Amazing OPPO F21 Pro 5G carries the stunning industry-first Dual Orbit Lights and magical Bokeh Flare Portrait. Worry-free and seamless experience with OPPO Enduring Quality and TÜV SÜD 36-Month Fluency Certification."
-                price="22999"
+                key={e.sno}
+                imgUrl={e.imgUrl}
+                name={e.name}
+                description={e.description}
+                price={e.price}
+                sno={e.sno}
               />
             ))}
           </div>
@@ -36,8 +39,8 @@ const checkout = () => {
             <span>Your order is eligible for FREE Delivery. Select this option at checkout. Details</span>
           </div>
           <div className="checkout__subtotal">
-            <span className='subtotal__items'>Subtotal ({2} items):</span>
-            <span className='subtotal__price'>{12999}/-</span>
+            <span className='subtotal__items'>Subtotal ({state.cart.length} items):</span>
+            <span className='subtotal__price'>{state.cart.reduce((a,b) => a + parseInt(b.price), 0)}/-</span>
           </div>
           <button className="subtotal__buyBtn">Proceed to Buy</button>
         </div>
