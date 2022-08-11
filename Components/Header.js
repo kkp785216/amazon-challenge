@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
-import { cartStateValue } from '../lib/stateProvider';
+import { StateContext } from '../lib/stateProvider';
 
 const Header = () => {
+    const cartStateValue = () => useContext(StateContext)
     const [state] = cartStateValue();
     return (
         <header className='header'>

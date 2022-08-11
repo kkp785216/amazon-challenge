@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { cartStateValue } from '../../lib/stateProvider';
+import {  StateContext } from '../../lib/stateProvider';
 
 const CheckoutProduct = (props) => {
   const { name, imgUrl, price, description, rating = 3, sno } = props;
+  const cartStateValue = () => useState(StateContext);
   const [state, dispatch] = cartStateValue();
   const removeFromCart = () => {
     dispatch({
       type: 'REMOVE_FROM_CART',
-      sno: parseInt(sno)
+      sno: parseInt(sno, state)
     })
   }
   return (
