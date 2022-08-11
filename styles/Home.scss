@@ -115,10 +115,23 @@
                     display: block;
                     margin-top: 11px;
                     cursor: pointer;
+                    position: relative;
 
                     &:hover {
                         background-color: #ffac3e;
                         border-color: #fda129;
+                    }
+
+                    .home__products__cartBtn__itemoverlay{
+                        position: absolute;
+                        top: -10px;
+                        right: -10px;
+                        background: #dd820b;
+                        line-height: 14px;
+                        display: flex;
+                        padding: 2px 7px;
+                        border-radius: 100%;
+                        box-shadow: 0px 1px 2px #0000007a;
                     }
                 }
             }

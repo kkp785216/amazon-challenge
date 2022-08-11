@@ -20,7 +20,7 @@ const CheckoutProduct = (props) => {
       <div className='checkout__products__right'>
         <div className='checkout__products__content'>
           <div>
-            <span className='checkout__products__name'>{name}{sno}</span>
+            <span className='checkout__products__name'>{name}</span>
             <span className="checkout__products__rating">
               {[...new Array(5)].map((e, i) => (
                 rating > i ? <StarIcon key={i}/> : <StarBorderIcon key={i}/>

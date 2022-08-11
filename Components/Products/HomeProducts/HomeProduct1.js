@@ -27,7 +27,11 @@ const HomeProductsLayout = (props) => {
             </div>
             <img className='home__products__img' src={imgUrl} alt={name} />
             <span className='home__products__name'>{name}</span>
-            <span className='home__products__cartBtn' onClick={addToCart}>Add to Cart</span>
+            <span className='home__products__cartBtn' onClick={addToCart}>
+                Add to Cart
+                {state.cart.filter(a => id === a.id).length >= 1 &&
+                    <span className='home__products__cartBtn__itemoverlay'>{state.cart.filter(a => id === a.id).length}</span>}
+            </span>
         </div>
     )
 }
