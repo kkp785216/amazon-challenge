@@ -26,6 +26,11 @@ export const Layout = (props) => {
         <Header />
         {props.children}
       </>)
+    case `/login`:
+      return (<>
+        <Header />
+        {props.children}
+      </>)
     default:
       return (<>
         {props.children}
