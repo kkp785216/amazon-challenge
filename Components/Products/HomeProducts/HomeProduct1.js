@@ -1,9 +1,9 @@
 import React from 'react'
-import { useStateValue } from '../../../lib/stateProvider'
+import { cartStateValue } from '../../../lib/stateProvider'
 
 const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price, id, rating } = props
-    const [state, dispatch] = useStateValue();
+    const [state, dispatch] = cartStateValue();
 
     const addToCart = () => {
         // Dispatch the item to the data layer

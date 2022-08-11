@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 
 const login = () => {
     return (<>
@@ -8,7 +9,7 @@ const login = () => {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <div>
-
+            Login
         </div>
     </>)
 }

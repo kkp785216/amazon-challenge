@@ -1,11 +1,11 @@
 import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { useStateValue } from '../../lib/stateProvider';
+import { cartStateValue } from '../../lib/stateProvider';
 
 const CheckoutProduct = (props) => {
   const { name, imgUrl, price, description, rating = 3, sno } = props;
-  const [state, dispatch] = useStateValue();
+  const [state, dispatch] = cartStateValue();
   const removeFromCart = () => {
     dispatch({
       type: 'REMOVE_FROM_CART',

@@ -2,10 +2,10 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
-import { useStateValue } from '../lib/stateProvider';
+import { cartStateValue } from '../lib/stateProvider';
 
 const Header = () => {
-    const [state] = useStateValue();
+    const [state] = cartStateValue();
     return (
         <header className='header'>
             <Link href='/'><a><img src="/assets/logo.png" className='header__logo' alt="Logo" /></a></Link>
