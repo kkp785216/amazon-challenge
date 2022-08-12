@@ -17,7 +17,7 @@ const Login = () => {
                     <label htmlFor="login-email">Email or mobile phone number</label>
                     <input type="text" id="login-email" />
                     <button type="submit" className='login__button'>Continue</button>
-                    <p className="login__policy">By continuing, you agree to Amazon's <span className='login__hyperlink'>Conditions of Use</span> and <span className='login__hyperlink'>Privacy Notice.</span></p>
+                    <p className="login__policy">By continuing, you agree to Amazon&apos;s <span className='login__hyperlink'>Conditions of Use</span> and <span className='login__hyperlink'>Privacy Notice.</span></p>
                 </form>
                 <div className="logon__newUser">
                     <span>New to Amazon?</span>
