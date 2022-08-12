@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
@@ -15,10 +15,12 @@ const Header = () => {
                 <SearchIcon className='header__searchIcon' />
             </div>
             <nav className="header__navbar">
-                <div className="header__option">
-                    <span className='header__optionLineOne'>Hello Guest</span>
-                    <span className='header__optionLineTwo'>Accounts &#38; Lists</span>
-                </div>
+                <Link href='/login'>
+                    <a className="header__option">
+                        <span className='header__optionLineOne'>Hello Guest</span>
+                        <span className='header__optionLineTwo'>Accounts &#38; Lists</span>
+                    </a>
+                </Link>
                 <div className="header__option">
                     <span className='header__optionLineOne'>Returns</span>
                     <span className='header__optionLineTwo'>&#38; Orders</span>

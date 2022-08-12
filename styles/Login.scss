@@ -136,11 +136,40 @@
             background: linear-gradient(90deg, white, #e4e4e4, #e4e4e4, white);
             position: relative;
         }
+        
+        .login__footer__links {
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            margin-top: 21px;
+            margin-bottom: 13px;
 
-        .login__footer__links{
-            .login__hyperlink{
-                
+            .login__hyperlink {
+                color: #0066c0;
+                cursor: pointer;
+                transition: .2s;
+                font-size: 12px;
+                margin-right: 27px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &:hover {
+                    color: #c45500;
+                    text-decoration: underline;
+                }
             }
+        }
+        .login__footer__copyright{
+            max-width: 350px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 12px;
+            text-align: center;
         }
     }
 }
