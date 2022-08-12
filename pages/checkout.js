@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { StateContext } from '../lib/stateProvider';
+import { cartStateValue } from '../lib/stateProvider';
 
 const checkout = () => {
-  const cartStateValue = () => useContext(StateContext)
   const [state, dispatch] = cartStateValue();
   return (
     <>
