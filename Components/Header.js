@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
-import { StateContext } from '../lib/stateProvider';
+import { StateContext } from '../lib/StateProvider';
 
 const Header = () => {
     // const [state] = cartStateValue();
