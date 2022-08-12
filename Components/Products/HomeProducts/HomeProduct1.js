@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { StateContext } from '../../../lib/stateProvider'
+import { StateContext } from '../../../lib/StateProvider'
 
 const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price, id, rating } = props

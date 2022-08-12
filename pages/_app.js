@@ -4,7 +4,7 @@ import '../styles/Header.scss'
 import '../styles/Checkout.scss'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
-import { StateProvider } from '../lib/stateProvider'
+import { StateProvider } from '../lib/StateProvider'
 import reducer, { initialState } from '../lib/reducer'
 
 export const Layout = (props) => {

@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { StateContext} from '../../lib/stateProvider';
+import { StateContext} from '../../lib/StateProvider';
 
 const CheckoutProduct = (props) => {
   const { name, imgUrl, price, description, rating = 3, sno } = props;
