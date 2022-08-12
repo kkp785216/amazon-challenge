@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import '../styles/Home.scss'
 import '../styles/Header.scss'
 import '../styles/Checkout.scss'
+import '../styles/Login.scss'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
 import { StateProvider } from '../lib/StateProvider'
@@ -28,7 +29,6 @@ export const Layout = (props) => {
       </>)
     case `/login`:
       return (<>
-        <Header />
         {props.children}
       </>)
     default:
