@@ -4,7 +4,7 @@ import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { StateContext } from '../lib/StateProvider';
 
-const checkout = () => {
+const Checkout = () => {
   const [state, dispatch] = useContext(StateContext);
   return (
     <>
@@ -53,4 +53,4 @@ const checkout = () => {
   )
 }
 
-export default checkout
+export default Checkout

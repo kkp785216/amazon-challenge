@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-const login = () => {
+const Login = () => {
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
@@ -14,4 +14,4 @@ const login = () => {
     </>)
 }
 
-export default login
+export default Login
