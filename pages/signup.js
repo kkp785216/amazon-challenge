@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import LoginFooter from '../components/LoginFooter'
+import LoginFooter from '../components/LoginFooter';
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
