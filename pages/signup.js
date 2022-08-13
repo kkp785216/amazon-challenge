@@ -1,0 +1,55 @@
+import React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import LoginFooter from '../components/LoginFooter'
+import InfoIcon from '@mui/icons-material/Info';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
+const SignUp = () => {
+    return (<>
+        <Head>
+            <title>Amazon Challenge - Login</title>
+            <meta name="description" content="Amazon Shoping App" />
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className='signup'>
+            <div className="signup__container">
+                <img src="/assets/logo_alt.png" className='signup__logo' width='103' alt="" />
+                <form className="signup__card">
+                    <h1 className='signup__heading'>Create Account</h1>
+                    <div className='signup__inputWrapper'>
+                        <label htmlFor="signup-name">Your Name</label>
+                        <input type="text" id="signup-name" name="signup_name" placeholder='Fist and last name' />
+                    </div>
+                    <div className='signup__inputWrapper'>
+                        <label htmlFor="signup-mobile">Mobile number</label>
+                        <div className='signup__mobile__inputWrapper'>
+                            <select name="signup_country" id="signup-country">
+                                <option value="+91" selected>India +91</option>
+                            </select>
+                            <input type="mobile" id="signup-mobile" name="signup_mobile" placeholder='Mobile number' />
+                        </div>
+                    </div>
+                    <div className='signup__inputWrapper'>
+                        <label htmlFor="signup-email">Email (optional)</label>
+                        <input type="email" id="signup-email" name='signup_email' />
+                    </div>
+                    <div className='signup__inputWrapper'>
+                        <label htmlFor="signup-password">Password</label>
+                        <input type="password" id="signup-password" name='signup_password' />
+                        <span className='signup__info'><InfoIcon className='signup__infoIcon' />Passwords must be at least 6 characters.</span>
+                    </div>
+                    <button type="submit" className='signup__button'>Continue</button>
+                    <div className="login__footer signup__already">
+                        <div className="login__footer__border"></div>
+                        <span className='signup__already__links' style={{marginTop: '21px'}}>Already have an account? <Link href='/login'><a>Sign in<ArrowRightIcon style={{marginTop: '3px'}} fontSize='14'/></a></Link></span>
+                        <span className='signup__already__links'>Buying for work? <Link href='/login'><a>Create a free business account<ArrowRightIcon style={{marginTop: '3px'}} fontSize='14'/></a></Link></span>
+                    </div>
+                </form>
+            </div>
+            <LoginFooter />
+        </div>
+    </>)
+}
+
+export default SignUp
