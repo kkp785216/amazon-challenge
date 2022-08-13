@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import LoginFooter from '../components/LoginFooter';
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
@@ -42,12 +41,20 @@ const SignUp = () => {
                     <button type="submit" className='signup__button'>Continue</button>
                     <div className="login__footer signup__already">
                         <div className="login__footer__border"></div>
-                        <span className='signup__already__links' style={{marginTop: '21px'}}>Already have an account? <Link href='/login'><a>Sign in<ArrowRightIcon style={{marginTop: '3px'}} fontSize='14'/></a></Link></span>
-                        <span className='signup__already__links'>Buying for work? <Link href='/login'><a>Create a free business account<ArrowRightIcon style={{marginTop: '3px'}} fontSize='14'/></a></Link></span>
+                        <span className='signup__already__links' style={{ marginTop: '21px' }}>Already have an account? <Link href='/login'><a>Sign in<ArrowRightIcon style={{ marginTop: '3px' }} fontSize='14' /></a></Link></span>
+                        <span className='signup__already__links'>Buying for work? <Link href='/login'><a>Create a free business account<ArrowRightIcon style={{ marginTop: '3px' }} fontSize='14' /></a></Link></span>
                     </div>
                 </form>
             </div>
-            <LoginFooter />
+            <div className="login__footer">
+                <div className="login__footer__border"></div>
+                <div className="login__footer__links">
+                    <span className='login__hyperlink'>Conditions of Use</span>
+                    <span className='login__hyperlink'>Privacy Notice</span>
+                    <span className='login__hyperlink'>Help</span>
+                </div>
+                <span className="login__footer__copyright">&copy; {new Date().getFullYear()}, Amazon.com Created by Krishna Prajapati</span>
+            </div>
         </div>
     </>)
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import LoginFooter from '../components/LoginFooter'
 
 const Login = () => {
     return (<>
@@ -25,7 +24,15 @@ const Login = () => {
                 </div>
                 <Link href="/signup"><a className="login__createAc">Create your Amazon account</a></Link>
             </div>
-            <LoginFooter/>
+            <div className="login__footer">
+                <div className="login__footer__border"></div>
+                <div className="login__footer__links">
+                    <span className='login__hyperlink'>Conditions of Use</span>
+                    <span className='login__hyperlink'>Privacy Notice</span>
+                    <span className='login__hyperlink'>Help</span>
+                </div>
+                <span className="login__footer__copyright">&copy; {new Date().getFullYear()}, Amazon.com Created by Krishna Prajapati</span>
+            </div>
         </div>
     </>)
 }
