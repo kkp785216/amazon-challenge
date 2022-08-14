@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     padding: 21px;
 
-    .checkout__table__header{
+    .checkout__table__header {
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid lightgrey;
@@ -18,24 +18,27 @@
         padding: 21px;
         height: fit-content;
 
-        h1{
+        h1 {
             font-weight: 600;
             font-size: 29px;
         }
 
-        .checkout__empty__cart{
-            .checkout__empty__cartImg{
+        .checkout__empty__cart {
+            .checkout__empty__cartImg {
                 max-width: 350px;
+                width: 100%;
                 display: block;
                 margin: 33px auto;
             }
-            .checkout__empty__cartHeading{
+
+            .checkout__empty__cartHeading {
                 display: block;
                 margin: 11px auto;
                 text-align: center;
                 font-size: 27px;
             }
-            .checkout__empty__cartPara{
+
+            .checkout__empty__cartPara {
                 text-align: center;
             }
         }
@@ -50,29 +53,32 @@
         position: sticky;
         top: 81px;
 
-        .checkout__alert{
+        .checkout__alert {
             display: flex;
             color: #008000;
             font-size: 13px;
 
-            &> :first-child{
+            &> :first-child {
                 margin-right: 7px;
             }
         }
-        .checkout__subtotal{
+
+        .checkout__subtotal {
             display: flex;
             justify-content: space-between;
             font-size: 18px;
             margin-top: 21px;
 
-            .subtotal__items{
+            .subtotal__items {
                 font-weight: 400;
             }
-            .subtotal__price{
+
+            .subtotal__price {
                 font-weight: 600;
             }
         }
-        .subtotal__buyBtn{
+
+        .subtotal__buyBtn {
             display: block;
             width: 100%;
             background-color: #FFD814;
@@ -81,42 +87,45 @@
             padding: 7px 11px;
             margin-top: 21px;
             cursor: pointer;
-            &:hover{
+
+            &:hover {
                 background-color: #dab500;
             }
         }
     }
 }
 
-.checkout__products__row{
+.checkout__products__row {
     display: flex;
     margin: 21px 0;
 
-    &:last-child{
+    &:last-child {
         margin-bottom: 0;
     }
 
-    .checkout__products__left{
+    .checkout__products__left {
         margin-right: 21px;
-        img{
+
+        img {
             width: 180px;
         }
     }
-    .checkout__products__right{
+
+    .checkout__products__right {
         display: flex;
         justify-content: space-between;
 
-        &> :last-child{
+        &> :last-child {
             padding-left: 23px;
         }
 
-        .checkout__products__content{
+        .checkout__products__content {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .checkout__products__name{
+        .checkout__products__name {
             display: -webkit-box;
             overflow: hidden;
             -webkit-box-orient: vertical;
@@ -124,26 +133,31 @@
             font-size: 18px;
             font-weight: 500;
         }
-        .checkout__products__rating{
+
+        .checkout__products__rating {
             color: #fda129;
             display: block;
             margin: 5px 0;
-            &>*{
+
+            &>* {
                 font-size: 19px;
             }
         }
-        .checkout__products__description{
+
+        .checkout__products__description {
             display: -webkit-box;
             overflow: hidden;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             font-size: 13px;
         }
-        .checkout__products__price{
+
+        .checkout__products__price {
             font-weight: 700;
             font-size: 17px;
         }
-        .home__products__remCartBtn{
+
+        .home__products__remCartBtn {
             padding: 3px 7px;
             background-color: #febd69;
             width: fit-content;
@@ -154,7 +168,7 @@
             margin-top: 11px;
             cursor: pointer;
 
-            &:hover{
+            &:hover {
                 background-color: #ffac3e;
                 border-color: #fda129;
             }

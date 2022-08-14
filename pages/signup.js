@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const SignUp = () => {
+    useEffect(() => {
+        document.getElementById('signup-name')?.focus();
+    }, []);
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
