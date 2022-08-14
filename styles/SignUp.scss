@@ -9,9 +9,13 @@
         margin-right: auto;
 
         .signup__logo {
-            margin: auto;
             display: block;
-            padding: 12px 0;
+            img{
+                margin: auto;
+                display: block;
+                padding: 12px 0;
+
+            }
         }
 
         .signup__card {

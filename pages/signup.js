@@ -16,7 +16,7 @@ const SignUp = () => {
         </Head>
         <div className='signup'>
             <div className="signup__container">
-                <img src="/assets/logo_alt.png" className='signup__logo' width='103' alt="" />
+                <Link href='/'><a className='signup__logo'><img src="/assets/logo_alt.png" width='103' alt="" /></a></Link>
                 <form className="signup__card">
                     <h1 className='signup__heading'>Create Account</h1>
                     <div className='signup__inputWrapper'>

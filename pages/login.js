@@ -15,7 +15,7 @@ const Login = () => {
         </Head>
         <div className='login'>
             <div className="login__container">
-                <img src="/assets/logo_alt.png" className='login__logo' width='103' alt="" />
+                <Link href='/'><a><img src="/assets/logo_alt.png" className='login__logo' width='103' alt="" /></a></Link>
                 <form className="login__card">
                     <h1 className='login__heading'>Sign-In</h1>
                     <label htmlFor="login-email">Email or mobile phone number</label>
