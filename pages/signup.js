@@ -39,7 +39,7 @@ const SignUp = () => {
                         <span className='signup__info'><InfoIcon className='signup__infoIcon' />Passwords must be at least 6 characters.</span>
                     </div>
                     <button type="submit" className='signup__button'>Continue</button>
-                    <div className="login__footer signup__already">
+                    <div className="signup__already">
                         <div className="login__footer__border"></div>
                         <span className='signup__already__links' style={{ marginTop: '21px' }}>Already have an account? <Link href='/login'><a>Sign in<ArrowRightIcon style={{ marginTop: '3px' }} fontSize='14' /></a></Link></span>
                         <span className='signup__already__links'>Buying for work? <Link href='/login'><a>Create a free business account<ArrowRightIcon style={{ marginTop: '3px' }} fontSize='14' /></a></Link></span>
