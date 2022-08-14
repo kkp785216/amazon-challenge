@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,21 +19,34 @@ code {
     monospace;
 }
 
-a{
+a {
   color: inherit;
   text-decoration: none;
 }
 
-.flex{
+.flex {
   display: flex;
 }
-.block{
+
+.block {
   display: block;
 }
 
-.mr-7{
+.mr-7 {
   margin-right: 7px;
 }
-.mr-21{
+
+.mr-21 {
   margin-right: 21px;
+}
+
+.hyperlink {
+  color: #0066c0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hyperlink:hover {
+  color: #c45500;
+  text-decoration: underline;
 }

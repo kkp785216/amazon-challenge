@@ -3,6 +3,7 @@ import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { StateContext } from '../lib/StateProvider';
+import Link from 'next/link'
 
 const Checkout = () => {
   const [state, dispatch] = useContext(StateContext);
@@ -11,7 +12,7 @@ const Checkout = () => {
       <Head>
         <title>Amazon Challenge - Checkout</title>
         <meta name="description" content="Amazon Shoping App" />
-            <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="checkout">
         <div className="checkout__left">
@@ -32,7 +33,9 @@ const Checkout = () => {
               />
             )) :
               <div className='checkout__empty__cart'>
-                <span>Cart is Empty and Purchase Something.</span>
+                <img className='checkout__empty__cartImg' src="/assets/empty_cart.png" alt="" />
+                <span className="checkout__empty__cartHeading">Opps! Cart is empty</span>
+                <p className='checkout__empty__cartPara'>Cart is Empty <Link href='/'><a className='hyperlink'>Go to Home</a></Link> and Purchase Something.</p>
               </div>
             }
           </div>
