@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const SignUp = () => {
+
+    const [signupForm, setSignupForm] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        password: ''
+    });
+
     useEffect(() => {
         document.getElementById('signup-name')?.focus();
     }, []);
+
+    const handleSignupSubmit = (e) => {
+        e.preventDefault();
+        console.log(signupForm)
+    }
+
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
@@ -17,28 +31,28 @@ const SignUp = () => {
         <div className='signup'>
             <div className="signup__container">
                 <Link href='/'><a className='signup__logo'><img src="/assets/logo_alt.png" width='103' alt="" /></a></Link>
-                <form className="signup__card">
+                <form className="signup__card" onSubmit={handleSignupSubmit}>
                     <h1 className='signup__heading'>Create Account</h1>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-name">Your Name</label>
-                        <input type="text" id="signup-name" name="signup_name" placeholder='Fist and last name' />
+                        <input type="text" id="signup-name" value={signupForm.name} onChange={e=> {setSignupForm({...signupForm, name: e.target.value})}} name="signup_name" placeholder='Fist and last name' />
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-mobile">Mobile number</label>
                         <div className='signup__mobile__inputWrapper'>
-                            <select name="signup_country" id="signup-country">
-                                <option value="+91" selected>India +91</option>
+                            <select name="signup_country" defaultValue='+91' id="signup-country">
+                                <option value="+91">India +91</option>
                             </select>
-                            <input type="mobile" id="signup-mobile" name="signup_mobile" placeholder='Mobile number' />
+                            <input type="mobile" id="signup-mobile" value={signupForm.phone} onChange={e=> {setSignupForm({...signupForm, phone: e.target.value})}} name="signup_mobile" placeholder='Mobile number' />
                         </div>
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-email">Email (optional)</label>
-                        <input type="email" id="signup-email" name='signup_email' />
+                        <input type="email" id="signup-email" value={signupForm.email} onChange={e=> {setSignupForm({...signupForm, email: e.target.value})}} name='signup_email' />
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-password">Password</label>
-                        <input type="password" id="signup-password" name='signup_password' />
+                        <input type="password" id="signup-password" value={signupForm.password} onChange={e=> {setSignupForm({...signupForm, password: e.target.value})}} name='signup_password' />
                         <span className='signup__info'><InfoIcon className='signup__infoIcon' />Passwords must be at least 6 characters.</span>
                     </div>
                     <button type="submit" className='signup__button'>Continue</button>
