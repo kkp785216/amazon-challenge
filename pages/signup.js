@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
+import { db } from '../lib/firebase'
 
 const SignUp = () => {
 
@@ -17,9 +19,30 @@ const SignUp = () => {
         document.getElementById('signup-name')?.focus();
     }, []);
 
-    const handleSignupSubmit = (e) => {
+    const handleSignupSubmit = async (e) => {
         e.preventDefault();
-        console.log(signupForm)
+
+        // Create a reference to the cities collection
+        const userRef = doc(collection(db, "users"));
+
+        // Check if user already exist
+        const q1 = query(collection(db, "users"), where("email", "==", signupForm.email));
+        const q2 = query(collection(db, "users"), where("phone", "==", signupForm.phone));
+        try {
+            const q1Shapshot = await getDocs(q1);
+            const q2Shapshot = await getDocs(q2);
+            if (q1Shapshot.docs.map(a => a.data()).length === 0 && q2Shapshot.docs.map(a => a.data()).length === 0) {
+                // Add a new document in collection "users"
+                setDoc(userRef, { ...signupForm, _id: userRef.id })
+                    .then(data => { console.log({ ...signupForm, _id: userRef.id }) })
+                    .catch(error => { console.log(error) })
+            }
+            else {
+                console.log('user alrady exist.');
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (<>
@@ -35,7 +58,7 @@ const SignUp = () => {
                     <h1 className='signup__heading'>Create Account</h1>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-name">Your Name</label>
-                        <input type="text" id="signup-name" value={signupForm.name} onChange={e=> {setSignupForm({...signupForm, name: e.target.value})}} name="signup_name" placeholder='Fist and last name' />
+                        <input type="text" id="signup-name" value={signupForm.name} onChange={e => { setSignupForm({ ...signupForm, name: e.target.value }) }} name="signup_name" placeholder='Fist and last name' />
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-mobile">Mobile number</label>
@@ -43,16 +66,16 @@ const SignUp = () => {
                             <select name="signup_country" defaultValue='+91' id="signup-country">
                                 <option value="+91">India +91</option>
                             </select>
-                            <input type="mobile" id="signup-mobile" value={signupForm.phone} onChange={e=> {setSignupForm({...signupForm, phone: e.target.value})}} name="signup_mobile" placeholder='Mobile number' />
+                            <input type="mobile" id="signup-mobile" value={signupForm.phone} onChange={e => { setSignupForm({ ...signupForm, phone: e.target.value }) }} name="signup_mobile" placeholder='Mobile number' />
                         </div>
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-email">Email (optional)</label>
-                        <input type="email" id="signup-email" value={signupForm.email} onChange={e=> {setSignupForm({...signupForm, email: e.target.value})}} name='signup_email' />
+                        <input type="email" id="signup-email" value={signupForm.email} onChange={e => { setSignupForm({ ...signupForm, email: e.target.value }) }} name='signup_email' />
                     </div>
                     <div className='signup__inputWrapper'>
                         <label htmlFor="signup-password">Password</label>
-                        <input type="password" id="signup-password" value={signupForm.password} onChange={e=> {setSignupForm({...signupForm, password: e.target.value})}} name='signup_password' />
+                        <input type="password" id="signup-password" value={signupForm.password} onChange={e => { setSignupForm({ ...signupForm, password: e.target.value }) }} name='signup_password' />
                         <span className='signup__info'><InfoIcon className='signup__infoIcon' />Passwords must be at least 6 characters.</span>
                     </div>
                     <button type="submit" className='signup__button'>Continue</button>
