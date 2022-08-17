@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Login = () => {
 
+    const router = useRouter();
+
+    const [logedIn, setLogedIn] = useState(false);
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
     const [toggleLogin, setToggleLotin] = useState(true);
 
     useEffect(() => {
         document.getElementById('login-email')?.focus();
     }, []);
+
+    useEffect(()=>{
+        logedIn && router.push('/');
+    }, [logedIn]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();

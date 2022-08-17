@@ -5,8 +5,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { db } from '../lib/firebase'
+import {useRouter} from 'next/router'
 
 const SignUp = () => {
+
+    const router = useRouter();
 
     const [signupForm, setSignupForm] = useState({
         name: '',
@@ -34,7 +37,7 @@ const SignUp = () => {
             if (q1Shapshot.docs.map(a => a.data()).length === 0 && q2Shapshot.docs.map(a => a.data()).length === 0) {
                 // Add a new document in collection "users"
                 setDoc(userRef, { ...signupForm, _id: userRef.id })
-                    .then(data => { console.log({ ...signupForm, _id: userRef.id }) })
+                    .then(data => { router.push('/login') })
                     .catch(error => { console.log(error) })
             }
             else {
