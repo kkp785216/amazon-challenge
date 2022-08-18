@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { StateContext } from '../lib/StateProvider'
 
 const Login = () => {
 
     const router = useRouter();
+    const [state, dispatch] = useContext(StateContext);
 
     const [logedIn, setLogedIn] = useState(false);
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
@@ -26,7 +28,13 @@ const Login = () => {
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
+        dispatch({
+            type: 'LOGIN',
+            email: loginForm.email,
+            password: loginForm.password
+        })
     }
+    console.log(state)
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
