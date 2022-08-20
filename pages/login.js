@@ -12,7 +12,7 @@ const Login = () => {
     const [logedIn, setLogedIn] = useState(false);
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
     const [toggleLogin, setToggleLotin] = useState(true);
-
+    
     useEffect(() => {
         document.getElementById('login-email')?.focus();
     }, []);
@@ -20,6 +20,10 @@ const Login = () => {
     useEffect(()=>{
         logedIn && router.push('/');
     }, [logedIn]);
+
+    useEffect(()=>{
+        console.log(state)
+    }, [state]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();
@@ -34,7 +38,6 @@ const Login = () => {
             password: loginForm.password
         })
     }
-    console.log(state)
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
