@@ -23,7 +23,7 @@ const Login = () => {
 
     useEffect(()=>{
         state.loginUser.then(a=>setLogedIn(a.logedIn));
-    }, [state]);
+    }, [state.loginUser]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();
