@@ -69,14 +69,23 @@ header {
             border: 1px solid transparent;
             padding: 7px;
             border-radius: 2px;
+            max-width: 145px;
 
             &:hover {
                 border-color: white;
             }
 
             .header__optionLineOne {
-                display: block;
                 font-size: 14px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+
+                &>span{
+                    color: #ff956b;
+                    font-weight: 600;
+                }
             }
 
             .header__optionLineTwo {
