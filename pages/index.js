@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
 import HomeProduct1 from '../Components/Products/HomeProducts/HomeProduct1'
 
 const HomeFlash = (props) => {
@@ -25,10 +26,12 @@ export default function Home() {
             <main className='home'>
                 <div className="home__flash">
                     <Swiper
-                        modules={[Navigation]}
+                        modules={[Navigation, Autoplay]}
                         spaceBetween={0}
                         slidesPerView={1}
                         navigation
+                        autoplay={{delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true}}
+                        loop={true}
                     >
                         <SwiperSlide>
                             <HomeFlash imgUrl='/assets/home-flash/1.jpg' />

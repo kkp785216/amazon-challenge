@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { StateContext } from '../lib/StateProvider';
 import Link from 'next/link'
+import FlipMove from 'react-flip-move';
 
 const Checkout = () => {
+  const [count, setCount] = useState(2)
   const [state, dispatch] = useContext(StateContext);
   return (
     <>
@@ -22,22 +24,49 @@ const Checkout = () => {
             <small>Price</small>
           </div>
           <div className="checkout__products">
-            {state.cart.length >= 1 ? state.cart.map((e, i) => (
-              <CheckoutProduct
-                key={e.sno}
-                imgUrl={e.imgUrl}
-                name={e.name}
-                description={e.description}
-                price={e.price}
-                sno={e.sno}
-              />
-            )) :
+            {state.cart.length >= 1 ?
+              <FlipMove
+                duration={750}
+                easing="ease-out"
+              >
+                {state.cart.map((e, i) => (
+                  <CheckoutProduct
+                    key={e.sno}
+                    imgUrl={e.imgUrl}
+                    name={e.name}
+                    description={e.description}
+                    price={e.price}
+                    sno={e.sno}
+                  />
+                ))}
+              </FlipMove>
+              :
               <div className='checkout__empty__cart'>
                 <img className='checkout__empty__cartImg' src="/assets/empty_cart.png" alt="" />
                 <span className="checkout__empty__cartHeading">Opps! Cart is empty</span>
                 <p className='checkout__empty__cartPara'>Cart is Empty <Link href='/'><a className='hyperlink'>Go to Home</a></Link> and Purchase Something.</p>
               </div>
             }
+            {/* {
+              <FlipMove
+                duration={750}
+                easing="ease-out"
+              >
+                {[...new Array(count)].map((e, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      padding: '15px 21px',
+                      margin: '2px 0',
+                      background: 'grey',
+                      color: '#fff'
+                    }}
+                  >Hello</div>
+                ))}
+              </FlipMove>
+            } */}
+            <button onClick={() => { setCount(count + 1) }}>increment </button>
+            <button onClick={() => { setCount(count - 1) }}> decrenemt</button>
           </div>
         </div>
         <div className="checkout__right">

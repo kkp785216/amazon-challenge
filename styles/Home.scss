@@ -64,6 +64,12 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                transition: .3s ease;
+
+                &:hover{
+                    transform: scale(1.02);
+                    box-shadow: 0px 0px 21px -2px #00000057;
+                }
 
                 &:last-child {
                     margin-right: 0;
@@ -94,7 +100,15 @@
                     font-size: 14px;
                     color: #b12704;
                 }
-
+                .home__products__rating {
+                    color: #fda129;
+                    display: block;
+                    margin: 5px 0;
+        
+                    &>* {
+                        font-size: 19px;
+                    }
+                }
                 .home__products__img {
                     display: block;
                     margin: auto;

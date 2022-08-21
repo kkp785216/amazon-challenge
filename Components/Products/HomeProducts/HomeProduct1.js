@@ -1,8 +1,10 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { StateContext } from '../../../lib/StateProvider'
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 const HomeProductsLayout = (props) => {
-    const { heading, name, imgUrl, fakePrice, price, id, rating } = props
+    const { heading, name, imgUrl, fakePrice, price, id, rating = 3 } = props
     const [state, dispatch] = useContext(StateContext);
 
     const addToCart = () => {
@@ -23,6 +25,11 @@ const HomeProductsLayout = (props) => {
                 <span className='home__products__price'>
                     <small>₹</small>
                     {price}/-
+                </span>
+                <span className="home__products__rating">
+                    {[...new Array(5)].map((e, i) => (
+                        rating > i ? <StarIcon key={i} /> : <StarBorderIcon key={i} />
+                    ))}
                 </span>
             </div>
             <img className='home__products__img' src={imgUrl} alt={name} />
