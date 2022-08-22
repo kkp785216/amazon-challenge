@@ -5,7 +5,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { db } from '../lib/firebase'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
+import LoginFooter from '../components/LoginFooter';
 
 const SignUp = () => {
 
@@ -89,15 +90,7 @@ const SignUp = () => {
                     </div>
                 </form>
             </div>
-            <div className="login__footer">
-                <div className="login__footer__border"></div>
-                <div className="login__footer__links">
-                    <span className='login__hyperlink'>Conditions of Use</span>
-                    <span className='login__hyperlink'>Privacy Notice</span>
-                    <span className='login__hyperlink'>Help</span>
-                </div>
-                <span className="login__footer__copyright">&copy; {new Date().getFullYear()}, Amazon.com Created by Krishna Prajapati</span>
-            </div>
+            <LoginFooter />
         </div>
     </>)
 }
