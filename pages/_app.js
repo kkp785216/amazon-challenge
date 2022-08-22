@@ -39,6 +39,11 @@ export const Layout = (props) => {
         <Header />
         {props.children}
       </>)
+    case `/payment-process`:
+      return (<>
+        <Header />
+        {props.children}
+      </>)
     default:
       return (<>
         {props.children}

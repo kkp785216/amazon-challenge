@@ -3,9 +3,11 @@ import { StateContext } from '../lib/StateProvider'
 import Link from 'next/link';
 import { countries, states } from '../lib/countries';
 import LoginFooter from '../Components/LoginFooter';
+import { useRouter } from 'next/router';
 
 const Address = () => {
   const [state, dispatch] = useContext(StateContext);
+  const router = useRouter();
   const [addressForm, setAddressForm] = useState({
     country: 'India',
     name: '',
@@ -33,6 +35,12 @@ const Address = () => {
     "default": false,
     "addressType": "Home (7 am – 9 pm delivery)",
     "checked": "on"
+  }
+
+  const handleAddressFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(addressForm);
+    router.push('/payment-process');
   }
 
   return (
@@ -88,10 +96,10 @@ const Address = () => {
             <h3 className="new__address__heading">Add a new address</h3>
             <div className="new__address__autofill">
               <span>Save time. Autofill dummy address</span>
-              <button onClick={e=>setAddressForm(autofill)}>Autofill</button>
+              <button onClick={e => setAddressForm(autofill)}>Autofill</button>
             </div>
 
-            <form className='new__address__form'>
+            <form onSubmit={handleAddressFormSubmit} className='new__address__form'>
               <div className="new__address__form_col">
                 <label htmlFor="address-country">Country/Region</label>
                 <select id="address-country" value={addressForm.country} onChange={e => setAddressForm({ ...addressForm, country: e.target.value })}>
@@ -135,7 +143,7 @@ const Address = () => {
                 </div>
               </div>
               <div className="new__address__form_col address-default-col">
-                <input type="checkbox" id="address-default" checked={addressForm.default} onChange={e => setAddressForm({ ...addressForm, default: !addressForm.default})} />
+                <input type="checkbox" id="address-default" checked={addressForm.default} onChange={e => setAddressForm({ ...addressForm, default: !addressForm.default })} />
                 <label htmlFor="address-default">Make this my default address</label>
               </div>
               <div className="new__address__delivery__indtruction">
@@ -150,12 +158,12 @@ const Address = () => {
                   </select>
                 </div>
               </div>
-              <button onClick={e => console.log(addressForm)} className='amazon-btn w-fit' type="button">Use this address</button>
+              <button type='submit' className='amazon-btn w-fit'>Use this address</button>
             </form>
           </div>
         </div>
       </div>
-      <LoginFooter/>
+      <LoginFooter />
     </div>
   )
 }
