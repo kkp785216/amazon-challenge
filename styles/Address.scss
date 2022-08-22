@@ -1,13 +1,12 @@
 .address__box {
-    max-height: 100vh;
     background-color: #fff;
-    overflow-y: auto;
     min-height: calc(100vh - 60px);
 
     .address {
         max-width: 1140px;
         margin-left: auto;
         margin-right: auto;
+        padding: 0 11px;
 
         .address__ckeckout {
             padding-top: 13px;
@@ -74,24 +73,6 @@
                             letter-spacing: 0.2px;
                         }
 
-                        &>button {
-                            margin-top: 13px;
-                            margin-bottom: 13px;
-                            display: block;
-                            width: 100%;
-                            padding: 8px;
-                            outline: none;
-                            border: 1px solid #a6a6a6;
-                            border-radius: 3px;
-                            transition: 0.2s;
-                            background: linear-gradient(#f7dea1, #f0c14c);
-                            cursor: pointer;
-
-                            &:hover {
-                                background: linear-gradient(#ffdb7e, #f0bc38);
-                            }
-                        }
-
                         .address__already__update {
                             display: flex;
                             justify-content: space-between;
@@ -118,7 +99,11 @@
         }
 
         .new__address__container {
-            max-width: 520px;
+            margin-bottom: 83px;
+            .new__address__container__wrapper {
+                max-width: 520px;
+            }
+
             .new__address__footer__border {
                 width: 100%;
                 height: 3px;
@@ -133,7 +118,7 @@
                 font-weight: 700;
             }
 
-            .new__address__autofill{
+            .new__address__autofill {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -141,13 +126,15 @@
                 background: linear-gradient(#ebfdff, #d9f8fc);
                 border: 1px solid #50c4d9;
                 border-radius: 3px;
-                span{
+
+                span {
                     display: block;
                     margin: auto;
                     font-weight: 500;
                     font-size: 14px;
                 }
-                button{
+
+                button {
                     padding: 8px 10px;
                     background-color: #d8dde6;
                     border: none;
@@ -159,8 +146,95 @@
                 }
             }
 
-            form.new__address__form{
+            form.new__address__form {
+                margin-top: 23px;
 
+                .new__address__form_col {
+                    margin-bottom: 15px;
+
+                    label {
+                        display: block;
+                        font-weight: 600;
+                        font-size: 14.3px;
+                        margin-bottom: 4px;
+                    }
+
+                    input:not(#address-default) {
+                        width: 100%;
+                        padding: 7px;
+                        border-radius: 3px;
+                        outline: none;
+                        border: 1px solid #a6a6a6;
+
+                        &:focus {
+                            border-color: #e77600;
+                            box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+                        }
+                    }
+
+                    select {
+                        width: 100%;
+                        padding: 7px;
+                        border-radius: 3px;
+                        outline: none;
+                        border: 1px solid #a6a6a6;
+                        background: linear-gradient(#f5f7f9, #dde0e5);
+
+                        &:hover {
+                            background: #dadde2;
+                        }
+
+                        &:focus {
+                            border-color: #e77600;
+                            box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+                        }
+
+                        option {
+                            padding: 5px;
+                        }
+                    }
+                }
+
+                .address-town-state {
+                    display: flex;
+                    justify-content: space-between;
+
+                    &>* {
+                        width: calc(50% - 5px);
+                    }
+                }
+
+                .address-default-col {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 33px;
+
+                    input {
+                        margin-right: 7px;
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+
+                .new__address__delivery__indtruction {
+                    h3 {
+                        margin-top: 21px;
+                        margin-bottom: 11px;
+                        font-size: 21px;
+                        font-weight: 700;
+                    }
+                    p{
+                        font-size: 14px;
+                    }
+
+                    .new__address__form_col{
+                        margin-top: 17px;
+                    }
+                }
+
+                &> button{
+                    margin-top: 27px;
+                }
             }
         }
     }

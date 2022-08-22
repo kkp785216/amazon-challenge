@@ -1,10 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { StateContext } from '../lib/StateProvider'
 import Link from 'next/link';
 import { countries, states } from '../lib/countries';
 
 const Address = () => {
   const [state, dispatch] = useContext(StateContext);
+  const [addressForm, setAddressForm] = useState({
+    country: 'India',
+    name: '',
+    phone: '',
+    pincode: '',
+    house: '',
+    street: '',
+    landmark: '',
+    town: '',
+    state: 'Choose a state',
+    default: false,
+    addressType: 'Select an Address Type'
+  });
+
+  const autofill = {
+    "country": "India",
+    "name": "KRisHnA Kumar",
+    "phone": "0000000000",
+    "pincode": "000000",
+    "house": "00",
+    "street": "Hallapur",
+    "landmark": "Siv Mandir",
+    "town": "Gorakhpur",
+    "state": "UTTAR PRADESH",
+    "default": false,
+    "addressType": "Home (7 am – 9 pm delivery)",
+    "checked": "on"
+  }
+
   return (
     <div className="address__box">
       <div className="address">
@@ -27,7 +56,7 @@ const Address = () => {
                 <span>Hallapur, Shantinagar</span>
                 <span>Ballia, UTTAR PRADESH 145875</span>
                 <span>India</span>
-                <button>Deliver to this address</button>
+                <button className='amazon-btn'>Deliver to this address</button>
                 <div className="address__already__update">
                   <button>Edit</button>
                   <button>Delete</button>
@@ -42,7 +71,7 @@ const Address = () => {
                 <span>Hallapur, Shantinagar</span>
                 <span>Ballia, UTTAR PRADESH 145875</span>
                 <span>India</span>
-                <button>Deliver to this address</button>
+                <button className='amazon-btn'>Deliver to this address</button>
                 <div className="address__already__update">
                   <button>Edit</button>
                   <button>Delete</button>
@@ -54,74 +83,85 @@ const Address = () => {
 
         <div className="new__address__container">
           <div className="new__address__footer__border"></div>
-          <h3 className="new__address__heading">Add a new address</h3>
-          <div className="new__address__autofill">
-            <span>Save time. Autofill dummy address</span>
-            <button>Autofill</button>
-          </div>
+          <div className="new__address__container__wrapper">
+            <h3 className="new__address__heading">Add a new address</h3>
+            <div className="new__address__autofill">
+              <span>Save time. Autofill dummy address</span>
+              <button onClick={e=>setAddressForm(autofill)}>Autofill</button>
+            </div>
 
-          <form className='new__address__form'>
-            <div className="new__address__form_col">
-              <label htmlFor="address-country">Country/Region</label>
-              <select id="address-country">
-                {countries.map((e, i) => (<option key={i} value={e}>{e}</option>))}
-              </select>
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-name">Full name</label>
-              <input type="name" id='address-name' />
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-phone">Mobile number</label>
-              <input type="mobile" id='address-phone' />
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-pincode">Pin code</label>
-              <input type="mobile" id='address-pincode' />
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-house">Flat, House no., Building, Company, Apartment</label>
-              <input type="mobile" id='address-house' />
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-street">Area, Street, Sector, Village</label>
-              <input type="mobile" id='address-street' />
-            </div>
-            <div className="new__address__form_col">
-              <label htmlFor="address-landmark">Landmark</label>
-              <input type="mobile" id='address-landmark' />
-            </div>
-            <div className="new__address__form_col">
-              <div>
-                <label htmlFor="address-town">Town/City</label>
-                <input type="mobile" id='address-town' />
-              </div>
-              <div>
-                <label htmlFor="address-state">State</label>
-                <select id="address-state">
-                  {states.map((e, i) => (<option key={i} value={e}>{e}</option>))}
-                </select>
-              </div>
-            </div>
-            <div className="new__address__form_col">
-              <input type="checkbox" id="address-default" />
-              <label htmlFor="address-default">Make this my default address</label>
-            </div>
-            <div className="new__address__delivery__indtruction">
-              <h4>Add delivery instructions</h4>
-              <p>Preferences are used to plan your delivery. However, shipments can sometimes arrive early or later than planned.</p>
+            <form className='new__address__form'>
               <div className="new__address__form_col">
                 <label htmlFor="address-country">Country/Region</label>
-                <select id="address-country">
-                  <option value="Select an Address Type">Select an Address Type</option>
-                  <option value="Home (7 am – 9 pm delivery)">Home (7 am – 9 pm delivery)</option>
-                  <option value="Office/Commercial (10 AM - 6 PM delivery)">Office/Commercial (10 AM - 6 PM delivery)</option>
+                <select id="address-country" value={addressForm.country} onChange={e => setAddressForm({ ...addressForm, country: e.target.value })}>
+                  {countries.map((e, i) => (<option key={i} value={e}>{e}</option>))}
                 </select>
               </div>
-            </div>
-            <button type="button">Use this address</button>
-          </form>
+              <div className="new__address__form_col">
+                <label htmlFor="address-name">Full name</label>
+                <input type="name" id='address-name' value={addressForm.name} onChange={e => setAddressForm({ ...addressForm, name: e.target.value })} />
+              </div>
+              <div className="new__address__form_col">
+                <label htmlFor="address-phone">Mobile number</label>
+                <input type="mobile" id='address-phone' value={addressForm.phone} onChange={e => setAddressForm({ ...addressForm, phone: e.target.value })} />
+              </div>
+              <div className="new__address__form_col">
+                <label htmlFor="address-pincode">Pin code</label>
+                <input type="mobile" id='address-pincode' value={addressForm.pincode} onChange={e => setAddressForm({ ...addressForm, pincode: e.target.value })} />
+              </div>
+              <div className="new__address__form_col">
+                <label htmlFor="address-house">Flat, House no., Building, Company, Apartment</label>
+                <input type="mobile" id='address-house' value={addressForm.house} onChange={e => setAddressForm({ ...addressForm, house: e.target.value })} />
+              </div>
+              <div className="new__address__form_col">
+                <label htmlFor="address-street">Area, Street, Sector, Village</label>
+                <input type="mobile" id='address-street' value={addressForm.street} onChange={e => setAddressForm({ ...addressForm, street: e.target.value })} />
+              </div>
+              <div className="new__address__form_col">
+                <label htmlFor="address-landmark">Landmark</label>
+                <input type="mobile" id='address-landmark' value={addressForm.landmark} onChange={e => setAddressForm({ ...addressForm, landmark: e.target.value })} />
+              </div>
+              <div className="new__address__form_col address-town-state">
+                <div>
+                  <label htmlFor="address-town">Town/City</label>
+                  <input type="mobile" id='address-town' value={addressForm.town} onChange={e => setAddressForm({ ...addressForm, town: e.target.value })} />
+                </div>
+                <div>
+                  <label htmlFor="address-state">State</label>
+                  <select id="address-state" value={addressForm.state} onChange={e => setAddressForm({ ...addressForm, state: e.target.value })}>
+                    {states.map((e, i) => (<option key={i} value={e}>{e}</option>))}
+                  </select>
+                </div>
+              </div>
+              <div className="new__address__form_col address-default-col">
+                <input type="checkbox" id="address-default" checked={addressForm.default} onChange={e => setAddressForm({ ...addressForm, default: !addressForm.default})} />
+                <label htmlFor="address-default">Make this my default address</label>
+              </div>
+              <div className="new__address__delivery__indtruction">
+                <h3>Add delivery instructions</h3>
+                <p>Preferences are used to plan your delivery. However, shipments can sometimes arrive early or later than planned.</p>
+                <div className="new__address__form_col">
+                  <label htmlFor="address-country">Address type</label>
+                  <select id="address-type" value={addressForm.addressType} onChange={e => setAddressForm({ ...addressForm, addressType: e.target.value })}>
+                    <option value="Select an Address Type">Select an Address Type</option>
+                    <option value="Home (7 am – 9 pm delivery)">Home (7 am – 9 pm delivery)</option>
+                    <option value="Office/Commercial (10 AM - 6 PM delivery)">Office/Commercial (10 AM - 6 PM delivery)</option>
+                  </select>
+                </div>
+              </div>
+              <button onClick={e => console.log(addressForm)} className='amazon-btn w-fit' type="button">Use this address</button>
+            </form>
+          </div>
         </div>
+      </div>
+      <div className="login__footer">
+        <div className="login__footer__border"></div>
+        <div className="login__footer__links">
+          <span className='login__hyperlink'>Conditions of Use</span>
+          <span className='login__hyperlink'>Privacy Notice</span>
+          <span className='login__hyperlink'>Help</span>
+        </div>
+        <span className="login__footer__copyright">&copy; {new Date().getFullYear()}, Amazon.com Created by Krishna Prajapati</span>
       </div>
     </div>
   )
