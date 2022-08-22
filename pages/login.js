@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { StateContext } from '../lib/StateProvider'
-import LoginFooter from '../components/LoginFooter'
+import LoginFooter from '../Components/LoginFooter'
 
 const Login = () => {
 

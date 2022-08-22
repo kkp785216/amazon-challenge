@@ -6,7 +6,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { db } from '../lib/firebase'
 import { useRouter } from 'next/router'
-import LoginFooter from '../components/LoginFooter';
+import LoginFooter from '../Components/LoginFooter';
 
 const SignUp = () => {
 

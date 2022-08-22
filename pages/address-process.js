@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { StateContext } from '../lib/StateProvider'
 import Link from 'next/link';
 import { countries, states } from '../lib/countries';
-import LoginFooter from '../components/LoginFooter';
+import LoginFooter from '../Components/LoginFooter';
 
 const Address = () => {
   const [state, dispatch] = useContext(StateContext);
