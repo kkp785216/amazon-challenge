@@ -33,6 +33,11 @@ export const Layout = (props) => {
       return (<>
         {props.children}
       </>)
+    case `/address`:
+      return (<>
+        <Header />
+        {props.children}
+      </>)
     default:
       return (<>
         {props.children}
