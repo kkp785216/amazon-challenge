@@ -61,7 +61,7 @@ const Checkout = () => {
             <span className='subtotal__items'>Subtotal ({state.cart.length} items):</span>
             <span className='subtotal__price'>{state.cart.reduce((a, b) => a + parseInt(b.price), 0)}/-</span>
           </div>
-          <button onClick={()=>{router.push('/address')}} className="subtotal__buyBtn">Proceed to Buy</button>
+          <button onClick={()=>{router.push('/address-process')}} className="subtotal__buyBtn">Proceed to Buy</button>
         </div>
       </div>
     </>

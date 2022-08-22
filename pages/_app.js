@@ -34,7 +34,7 @@ export const Layout = (props) => {
       return (<>
         {props.children}
       </>)
-    case `/address`:
+    case `/address-process`:
       return (<>
         <Header />
         {props.children}
