@@ -1,0 +1,35 @@
+.address__box {
+    max-height: 100vh;
+    background-color: #fff;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+    .address {
+        max-width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .address__ckeckout {
+            padding: 13px 0;
+
+            h2 {
+                font-weight: 400;
+                font-size: 33px;
+                text-align: center;
+            }
+        }
+
+        .address__container {
+            .address__heading {
+                font-size: 27px;
+                font-weight: 400;
+                margin-bottom: 17px;
+            }
+
+            .address__instruction {
+                font-size: 13px;
+            }
+        }
+    }
+}
