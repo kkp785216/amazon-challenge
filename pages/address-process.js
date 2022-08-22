@@ -15,7 +15,7 @@ const Address = () => {
         </div>
         <div id='new-address' className="address__container">
           <h3 className='address__heading'>Select a delivery address</h3>
-          <span className='address__instruction'>Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can <a className='hyperlink' href="#new-address">enter a new delivery address.</a></span>
+          <span className='address__instruction'>Is the address you&apos;d like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can <a className='hyperlink' href="#new-address">enter a new delivery address.</a></span>
           <div className="address__already__row">
 
             <div className="address__already__col">
