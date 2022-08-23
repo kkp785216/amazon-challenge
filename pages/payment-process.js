@@ -120,7 +120,7 @@ const Payment = () => {
             </div>
             <div className="payment__method__section__right">
               <button className='amazon-btn'>Continue</button>
-              <p>You can review this order before it's final.</p>
+              <p>You can review this order before it&apos;s final.</p>
             </div>
           </section>
         </div>
