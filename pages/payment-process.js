@@ -59,7 +59,7 @@ const Payment = () => {
                   <label htmlFor="payment-debit">
                     <h4>Add Debit/Credit/ATM Card</h4>
                     <span className="payment__guidelines">
-                      This is not actual amazon so plz don't fill your real card info. <pre> </pre> <span className='hyperlink'> Learn More</span>
+                      This is not actual amazon so plz don&apos;t fill your real card info. <pre> </pre> <span className='hyperlink'> Learn More</span>
                     </span>
                     <div className="payment__debit__cardImg">
                       <span style={{ backgroundPosition: '0px' }} id="payment-debit-img1"></span>
