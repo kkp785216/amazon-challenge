@@ -28,6 +28,17 @@ const Payment = () => {
       debitCardWrapper.style.height = '0px';
     }
   }
+  const debitCardDeselect = (e) => {
+    let debitCard = document.getElementById('payment-card-details');
+    let debitCardWrapper = document.querySelector('.payment__card__details__wrapper');
+    if (e.target.checked) {
+      document.getElementById('payment-debit-card-container').classList.remove('active');
+      debitCardWrapper.style.height = `${debitCard.offsetHeight}px`;
+      setTimeout(() => {
+        debitCardWrapper.style.height = '0px';
+      }, 0);
+    }
+  }
   return (
     <div className="payment__box">
       <div className="payment">
@@ -44,11 +55,11 @@ const Payment = () => {
               <h3>Another payment method</h3>
               <div className='payment__card__container' id='payment-debit-card-container'>
                 <div className="payment__debit__card payment__card">
-                  <input onChange={debitCardSelect} type="radio" id="payment-debit" />
+                  <input name="paymentoption" onChange={debitCardSelect} type="radio" id="payment-debit" />
                   <label htmlFor="payment-debit">
                     <h4>Add Debit/Credit/ATM Card</h4>
-                    <span className="payment__debit__guidelines">
-                      You can save your cards as per new RBI guidelines. <pre> </pre> <span className='hyperlink'> Learn More</span>
+                    <span className="payment__guidelines">
+                      This is not actual amazon so plz don't fill your real card info. <pre> </pre> <span className='hyperlink'> Learn More</span>
                     </span>
                     <div className="payment__debit__cardImg">
                       <span style={{ backgroundPosition: '0px' }} id="payment-debit-img1"></span>
@@ -122,6 +133,15 @@ const Payment = () => {
                     </div>
                     <button type="submit" className='amazon-btn w-fit'>Add your card</button>
                   </form>
+                </div>
+              </div>
+              <div className='payment__card__container'>
+                <div className="payment__debit__card payment__card">
+                  <input name="paymentoption" onChange={debitCardDeselect} type="radio" id="payment-paydelivery" />
+                  <label htmlFor="payment-paydelivery">
+                    <h4>Pay on Delivery</h4>
+                    <span className='payment__guidelines'>Due to high demand and to ensure social distancing, Pay on Delivery is not available.</span>
+                  </label>
                 </div>
               </div>
             </div>
