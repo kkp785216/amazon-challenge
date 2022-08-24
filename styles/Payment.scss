@@ -89,17 +89,17 @@
                     }
                 }
 
+                .payment__card__details__wrapper{
+                    height: 0px;
+                    transition: all 0.5s ease;
+                    overflow: hidden;
+                }
                 .payment__card__details {
-                    margin-top: 21px;
                     padding-left: 29px;
                     padding-top: 7px;
                     transition: 0.5s;
                     overflow: hidden;
-                    max-height: 0px;
-
-                    &.active{
-                        max-height: 250px;
-                    }
+                    padding-top: 27px;
 
                     .payment__card__details__col {
                         display: flex;
