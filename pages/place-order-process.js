@@ -83,8 +83,7 @@ const PlaceOrder = () => {
                                 <div className="placeorder__reviews__row">
                                     <div className="placeorder__reviews__col">
                                         {state.cart?.map((e, i) => (
-                                            <div className="placeorder__reviews__product">
-                                                {console.log(e)}
+                                            <div className="placeorder__reviews__product" key={i}>
                                                 <img className='placeorder__reviews__productImg' src={e.imgUrl} alt="" />
                                                 <div className="placeorder__reviews__product__details">
                                                     <strong className='placeorder__reviews__product__name'>{e.name}</strong>
@@ -144,7 +143,7 @@ const PlaceOrder = () => {
                             </ul>
                             <div className="placeorder__summary__instruction">
                                 <span className='hyperlink'>How are delivery costs calculated?</span>
-                                <span className='hyperlink'>Why didn't I qualify for FREE Delivery?</span>
+                                <span className='hyperlink'>Why didn&apos;t I qualify for FREE Delivery?</span>
                             </div>
                         </div>
                     </div>
