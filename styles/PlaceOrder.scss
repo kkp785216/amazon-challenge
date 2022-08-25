@@ -52,13 +52,16 @@
         }
     }
 
+    .placeorder__row {
+        margin-top: 43px;
+    }
+
     .placeorder__method__card {
         padding: 17px;
         border: 1px solid #dddddd;
         border-radius: 3px;
         display: flex;
         justify-content: space-between;
-        margin-top: 33px;
 
         &>* {
             width: calc(33.3333333% - 8px);
@@ -186,11 +189,11 @@
                 .placeorder__reviews__col {
                     width: calc(50% - 8px);
 
-                    .placeorder__reviews__product{
+                    .placeorder__reviews__product {
                         display: flex;
                         margin-bottom: 12px;
 
-                        &:last-child{
+                        &:last-child {
                             margin-bottom: 0;
                         }
                     }
@@ -286,6 +289,70 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    .placeorder__right {
+        .placeorder__summary__card {
+            padding: 17px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+
+            .placeorder__summary__heading {
+                font-size: 14px;
+                font-weight: 600;
+                margin-top: 23px;
+                margin-bottom: 3px;
+                display: block;
+            }
+
+            .placeorder__summary__list {
+                .placeorder__summary__list__row {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 13px;
+                    line-height: 19px;
+                }
+            }
+
+            .placeorder__summary__orderTotal {
+                display: flex;
+                justify-content: space-between;
+                color: #b12704;
+                font-weight: 700;
+                font-size: 17px;
+                padding: 12px 0;
+                margin: 7px 0;
+                border-top: 1px solid #e7e7e7;
+                border-bottom: 1px solid #e7e7e7;
+            }
+
+            .placeorder__summary__saving {
+                display: block;
+                color: #b12704;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .placeorder__summary__savingList {
+                padding-left: 33px;
+                font-size: 14px;
+                margin-top: 3px;
+                color: #383838;
+            }
+            .placeorder__summary__instruction{
+                padding: 13px 17px;
+                background-color: #f7f7f7;
+                margin: -17px;
+                margin-top: 17px;
+                border-top: 1px solid #dddddd;
+                span{
+                    display: block;
+                    font-size: 11px;
+                    font-weight: 500;
+                    line-height: 23px;
                 }
             }
         }

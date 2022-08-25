@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import RedeemIcon from '@mui/icons-material/Redeem';
-
-const ReviewOrder = () => {
-    return (
-        <div></div>
-    )
-}
+import { StateContext } from '../lib/StateProvider';
 
 const PlaceOrder = () => {
+
+    const [state, dispatch] = useContext(StateContext);
+
+    const removeFromCart = (sno) => {
+        dispatch({
+            type: 'REMOVE_FROM_CART',
+            sno: parseInt(sno)
+        })
+    }
+
     return (
         <div className='placeorder'>
             <div className="placeorder__container">
@@ -77,60 +82,27 @@ const PlaceOrder = () => {
                                 </div>
                                 <div className="placeorder__reviews__row">
                                     <div className="placeorder__reviews__col">
-                                        <div className="placeorder__reviews__product">
-                                            <img className='placeorder__reviews__productImg' src="/assets/mobile.jpg" alt="" />
-                                            <div className="placeorder__reviews__product__details">
-                                                <strong className='placeorder__reviews__product__name'>WOW IMAGINE Polycarbonate Translucent Hybrid Smoked Matte 360 Degree Protection Protective Hard Case Bumper Back Cover for Oppo A54 4G (Blue)</strong>
-                                                <div className="placeorder__reviews__product__price">
-                                                    <span className="placeorder__reviews__product__priceFake">₹999.00</span>
-                                                    <span className="placeorder__reviews__product__price">₹161.00</span>
-                                                    <img src="/assets/fulfilled.png" width='66' alt="" />
+                                        {state.cart?.map((e, i) => (
+                                            <div className="placeorder__reviews__product">
+                                                {console.log(e)}
+                                                <img className='placeorder__reviews__productImg' src={e.imgUrl} alt="" />
+                                                <div className="placeorder__reviews__product__details">
+                                                    <strong className='placeorder__reviews__product__name'>{e.name}</strong>
+                                                    <div className="placeorder__reviews__product__price">
+                                                        <span className="placeorder__reviews__product__priceFake">₹{e.fakePrice}</span>
+                                                        <span className="placeorder__reviews__product__price">₹{e.price}</span>
+                                                        <img src="/assets/fulfilled.png" width='66' alt="" />
+                                                    </div>
+                                                    <span className="placeorder__reviews__product__save">You Save: ₹{e.fakePrice - e.price} ({parseInt((e.price / (e.fakePrice - e.price)) * 100)}%)</span>
+                                                    <span className="placeorder__reviews__product__quantity">Quantity: 1<span onClick={() => removeFromCart(e.sno)} className='hyperlink'>Delete</span></span>
+                                                    <span className='placeorder__reviews__product__soldBy'>Sold by: FIRST MART</span>
+                                                    <button className="placeorder__reviews__product__giftBtn">
+                                                        <RedeemIcon />
+                                                        Add gift options
+                                                    </button>
                                                 </div>
-                                                <span className="placeorder__reviews__product__save">You Save: ₹584.00 (73%)</span>
-                                                <span className="placeorder__reviews__product__quantity">Quantity: 1<span className='hyperlink'>Delete</span></span>
-                                                <span className='placeorder__reviews__product__soldBy'>Sold by: FIRST MART</span>
-                                                <button className="placeorder__reviews__product__giftBtn">
-                                                    <RedeemIcon />
-                                                    Add gift options
-                                                </button>
                                             </div>
-                                        </div>
-                                        <div className="placeorder__reviews__product">
-                                            <img className='placeorder__reviews__productImg' src="/assets/mobile.jpg" alt="" />
-                                            <div className="placeorder__reviews__product__details">
-                                                <strong className='placeorder__reviews__product__name'>WOW IMAGINE Polycarbonate Translucent Hybrid Smoked Matte 360 Degree Protection Protective Hard Case Bumper Back Cover for Oppo A54 4G (Blue)</strong>
-                                                <div className="placeorder__reviews__product__price">
-                                                    <span className="placeorder__reviews__product__priceFake">₹999.00</span>
-                                                    <span className="placeorder__reviews__product__price">₹161.00</span>
-                                                    <img src="/assets/fulfilled.png" width='66' alt="" />
-                                                </div>
-                                                <span className="placeorder__reviews__product__save">You Save: ₹584.00 (73%)</span>
-                                                <span className="placeorder__reviews__product__quantity">Quantity: 1<span className='hyperlink'>Delete</span></span>
-                                                <span className='placeorder__reviews__product__soldBy'>Sold by: FIRST MART</span>
-                                                <button className="placeorder__reviews__product__giftBtn">
-                                                    <RedeemIcon />
-                                                    Add gift options
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="placeorder__reviews__product">
-                                            <img className='placeorder__reviews__productImg' src="/assets/mobile.jpg" alt="" />
-                                            <div className="placeorder__reviews__product__details">
-                                                <strong className='placeorder__reviews__product__name'>WOW IMAGINE Polycarbonate Translucent Hybrid Smoked Matte 360 Degree Protection Protective Hard Case Bumper Back Cover for Oppo A54 4G (Blue)</strong>
-                                                <div className="placeorder__reviews__product__price">
-                                                    <span className="placeorder__reviews__product__priceFake">₹999.00</span>
-                                                    <span className="placeorder__reviews__product__price">₹161.00</span>
-                                                    <img src="/assets/fulfilled.png" width='66' alt="" />
-                                                </div>
-                                                <span className="placeorder__reviews__product__save">You Save: ₹584.00 (73%)</span>
-                                                <span className="placeorder__reviews__product__quantity">Quantity: 1<span className='hyperlink'>Delete</span></span>
-                                                <span className='placeorder__reviews__product__soldBy'>Sold by: FIRST MART</span>
-                                                <button className="placeorder__reviews__product__giftBtn">
-                                                    <RedeemIcon />
-                                                    Add gift options
-                                                </button>
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
                                     <div className="placeorder__reviews__col">
 
@@ -139,7 +111,43 @@ const PlaceOrder = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="placeorder__right"></div>
+                    <div className="placeorder__right">
+                        <div className="placeorder__summary__card">
+                            <button className="amazon-btn">Place Your Order and pay</button>
+                            <strong className='placeorder__summary__heading'>Order Sammary</strong>
+                            <div className="placeorder__summary__list">
+                                <div className="placeorder__summary__list__row">
+                                    <span>Items:</span>
+                                    <span>₹{state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0)?.toFixed(2)}</span>
+                                </div>
+                                <div className="placeorder__summary__list__row">
+                                    <span>Delivery:</span>
+                                    <span>₹00</span>
+                                </div>
+                                <div className="placeorder__summary__list__row">
+                                    <span>Total:</span>
+                                    <span>₹{state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0)?.toFixed(2)}</span>
+                                </div>
+                                <div className="placeorder__summary__list__row">
+                                    <span>Promotion Applied:</span>
+                                    <span>₹00</span>
+                                </div>
+                            </div>
+                            <div className="placeorder__summary__orderTotal">
+                                <span>Order Total:</span>
+                                <span>₹{state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0)?.toFixed(2)}</span>
+                            </div>
+                            <span className="placeorder__summary__saving">Your Savings: ₹ {(state.cart?.map(e=>parseInt(e.fakePrice))?.reduce((accu, curr)=>(accu + curr),0) - state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0)).toFixed(2)} ({parseInt((state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0) / (state.cart?.map(e=>parseInt(e.fakePrice))?.reduce((accu, curr)=>(accu + curr),0) - state.cart?.map(e=>parseInt(e.price))?.reduce((accu, curr)=>(accu + curr),0)))*100)}%)</span>
+                            <ul className="placeorder__summary__savingList">
+                                <li>FREE Delivery</li>
+                                <li>Item discount</li>
+                            </ul>
+                            <div className="placeorder__summary__instruction">
+                                <span className='hyperlink'>How are delivery costs calculated?</span>
+                                <span className='hyperlink'>Why didn't I qualify for FREE Delivery?</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
