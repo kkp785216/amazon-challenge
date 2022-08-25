@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
+import {useRouter} from 'next/router'
 import LoginFooter from '../Components/LoginFooter'
 import ComponentCheckout from '../Components/ComponentCheckout'
 
 const Payment = () => {
+
+  const router = useRouter();
+
   const [debitCardForm, setDebitCardForm] = useState({
     number: '',
     name: '',
@@ -140,7 +143,7 @@ const Payment = () => {
               </div>
             </div>
             <div className="payment__method__section__right">
-              <button className='amazon-btn'>Continue</button>
+              <button onClick={e=>router.push('/place-order-process')} className='amazon-btn'>Continue</button>
               <p>You can review this order before it&apos;s final.</p>
             </div>
           </section>

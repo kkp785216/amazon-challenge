@@ -1,11 +1,320 @@
-.placeorder{
+.placeorder {
     min-height: calc(100vh - 60px);
     background-color: #fff;
 
-    .placeorder__container{
+    .placeorder__container {
         max-width: 1140px;
         padding: 0 11px;
         margin-left: auto;
         margin-right: auto;
+
+        .placeorder__row {
+            display: flex;
+            justify-content: space-between;
+
+            .placeorder__left {
+                width: calc(75% - 8px);
+            }
+
+            .placeorder__right {
+                width: calc(25% - 8px);
+            }
+        }
+    }
+
+    .placeorder__review__heading {
+        margin-bottom: 23px;
+        position: relative;
+        margin-top: 21px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            width: 100%;
+            background-color: #e5e5e5;
+        }
+
+        >h1 {
+            font-size: 27px;
+            font-weight: 400;
+            margin-bottom: 11px;
+        }
+
+        >span {
+            font-size: 13px;
+            padding-top: 7px;
+            padding-bottom: 15px;
+            display: block;
+        }
+    }
+
+    .placeorder__method__card {
+        padding: 17px;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 33px;
+
+        &>* {
+            width: calc(33.3333333% - 8px);
+            flex: 0 0 auto;
+        }
+
+        .placeorder__method__heading {
+            display: flex;
+            align-items: center;
+
+            h5 {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            a {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+
+        .placeorder__method__address {
+            .placeorder__method__address__details {
+                >span {
+                    font-size: 13px;
+                    display: block;
+                    line-height: 21px;
+                    letter-spacing: 0.2px;
+                }
+            }
+        }
+
+        .placeorder__method__payment {
+            &>span {
+                font-size: 13px;
+                display: block;
+                line-height: 21px;
+                letter-spacing: 0.2px;
+                text-transform: uppercase;
+            }
+        }
+
+        .placeorder__method__gift {
+            .placeorder__method__gift__row {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 9px;
+
+                >input {
+                    width: 100%;
+                    padding: 7px;
+                    border-radius: 3px;
+                    outline: none;
+                    border: 1px solid #a6a6a6;
+                    margin-right: 7px;
+
+                    &:focus {
+                        border-color: #e77600;
+                        box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+                    }
+                }
+
+                >button {
+                    width: fit-content;
+                    padding: 7px;
+                    border-radius: 3px;
+                    outline: none;
+                    border: 1px solid #a6a6a6;
+                    background: linear-gradient(#f5f7f9, #dde0e5);
+                    cursor: pointer;
+
+                    &:hover {
+                        background: #dadde2;
+                    }
+                }
+            }
+        }
+    }
+
+    .placeorder__review__card {
+        padding: 17px;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        margin-top: 13px;
+
+        .placeorder__review__wrapper {
+            .placeorder__delivery__date__wrapper {
+                margin-top: 17px;
+                margin-bottom: 13px;
+
+                .placeorder__delivery__date__fulfill {
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 600;
+
+                    img {
+                        margin-left: 5px;
+                    }
+                }
+
+                .placeorder__delivery__date__date {
+                    display: block;
+                    color: #009900;
+                    font-size: 18px;
+                    font-weight: 700;
+
+                }
+
+                .placeorder__delivery__date__time {
+                    display: block;
+                    font-size: 14px;
+                    color: rgb(95, 95, 95);
+
+                    .hyperlink {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .placeorder__reviews__row {
+                display: flex;
+                justify-content: space-between;
+
+                .placeorder__reviews__col {
+                    width: calc(50% - 8px);
+
+                    .placeorder__reviews__product{
+                        display: flex;
+                        margin-bottom: 12px;
+
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    img.placeorder__reviews__productImg {
+                        width: 79px;
+                        margin-right: 17px;
+                        height: fit-content;
+                    }
+
+                    .placeorder__reviews__product__details {
+                        .placeorder__reviews__product__name {
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+
+                        .placeorder__reviews__product__price {
+                            font-size: 14px;
+                            margin-top: 3px;
+                            display: flex;
+                            align-items: center;
+
+                            .placeorder__reviews__product__priceFake {
+                                position: relative;
+                                margin-right: 7px;
+
+                                &:after {
+                                    position: absolute;
+                                    top: 0;
+                                    bottom: 0;
+                                    height: 1px;
+                                    background-color: black;
+                                    content: "";
+                                    margin: auto;
+                                    left: 0;
+                                    right: 0;
+                                }
+                            }
+
+                            .placeorder__reviews__product__price {
+                                font-weight: 600;
+                                color: #b12704;
+                                margin-right: 4px;
+                            }
+                        }
+
+                        .placeorder__reviews__product__save {
+                            font-size: 13.5px;
+                            display: block;
+                            line-height: 19px;
+                        }
+
+                        .placeorder__reviews__product__quantity {
+                            font-weight: 600;
+                            font-size: 13.5px;
+                            display: block;
+                            line-height: 19px;
+
+                            .hyperlink {
+                                font-size: 12px;
+                                font-weight: 400;
+                                margin-left: 4px;
+                            }
+                        }
+
+                        .placeorder__reviews__product__soldBy {
+                            font-size: 12px;
+                            font-weight: 500;
+                            color: rgb(138, 138, 138);
+                            display: block;
+                            line-height: 19px;
+                        }
+
+                        .placeorder__reviews__product__giftBtn {
+                            display: flex;
+                            align-items: center;
+                            font-size: 11px;
+                            padding: 4px 5.5px;
+                            border-radius: 3px;
+                            outline: none;
+                            border: 1px solid #a6a6a6;
+                            background: #f1f1f1;
+                            margin-top: 9px;
+                            cursor: pointer;
+
+                            &:hover {
+                                background: #dadde2;
+                            }
+
+                            svg {
+                                margin-right: 4px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.placeorder__prime {
+    display: flex;
+    align-items: center;
+
+    >img {
+        width: 110px;
+        margin-right: 11px;
+    }
+
+    .placeorder__prime__details {
+        >p {
+            span {
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+
+        .placeorder__prime__details__join {
+            span {
+                font-weight: 500;
+                font-size: 14px;
+                text-decoration: underline;
+            }
+        }
     }
 }
