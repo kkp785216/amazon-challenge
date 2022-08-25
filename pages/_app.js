@@ -15,7 +15,7 @@ import reducer, { initialState } from '../lib/reducer'
 export const Layout = (props) => {
   const router = useRouter();
   const { singleProduct } = router.query;
-  switch (router.asPath) {
+  switch (router.pathname) {
     case '/':
       return (<>
         <Header />
@@ -40,7 +40,7 @@ export const Layout = (props) => {
         <Header />
         {props.children}
       </>)
-    case `/payment-process`:
+    case `/payment-process/`:
       return (<>
         <Header />
         {props.children}
