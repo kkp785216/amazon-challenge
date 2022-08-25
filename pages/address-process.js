@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { StateContext } from '../lib/StateProvider'
-import Link from 'next/link';
+import React, { useState } from 'react'
 import { countries, states } from '../lib/countries';
 import LoginFooter from '../Components/LoginFooter';
 import { useRouter } from 'next/router';
+import ComponentCheckout from '../Components/ComponentCheckout';
 
 const Address = () => {
-  const [state, dispatch] = useContext(StateContext);
   const router = useRouter();
   const [addressForm, setAddressForm] = useState({
     country: 'India',
@@ -46,12 +44,7 @@ const Address = () => {
   return (
     <div className="address__box">
       <div className="address">
-        <div className="address__ckeckout">
-          <Link href="/checkout"><a><h2>
-            <span>Checkout </span>
-            <span style={{ color: '#ff956b' }}>({state?.cart?.length} items)</span>
-          </h2></a></Link>
-        </div>
+        <ComponentCheckout />
         <div className="address__container">
           <div className="address__heading__wrapper">
             <h3 className='address__heading'>Select a delivery address</h3>

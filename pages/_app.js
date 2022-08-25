@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import '../styles/Home.scss'
 import '../styles/Header.scss'
 import '../styles/Checkout.scss'
@@ -7,6 +7,7 @@ import '../styles/LoginFooter.scss'
 import '../styles/SignUp.scss'
 import '../styles/Address.scss'
 import '../styles/Payment.scss'
+import '../styles/PlaceOrder.scss'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
 import { StateProvider } from '../lib/StateProvider'
@@ -40,7 +41,12 @@ export const Layout = (props) => {
         <Header />
         {props.children}
       </>)
-    case `/payment-process/`:
+    case `/payment-process`:
+      return (<>
+        <Header />
+        {props.children}
+      </>)
+    case `/place-order-process`:
       return (<>
         <Header />
         {props.children}

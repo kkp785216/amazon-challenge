@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { StateContext } from '../lib/StateProvider'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import LoginFooter from '../Components/LoginFooter'
+import ComponentCheckout from '../Components/ComponentCheckout'
 
 const Payment = () => {
-  const [state, dispatch] = useContext(StateContext);
   const [debitCardForm, setDebitCardForm] = useState({
     number: '',
     name: '',
@@ -42,12 +41,7 @@ const Payment = () => {
   return (
     <div className="payment__box">
       <div className="payment">
-        <div className="payment__ckeckout">
-          <Link href="/checkout"><a><h2>
-            <span>Checkout </span>
-            <span style={{ color: '#ff956b' }}>({state?.cart?.length} items)</span>
-          </h2></a></Link>
-        </div>
+        <ComponentCheckout />
         <div className="payment__container">
           <h3 className='payment__heading'>Select a payment method</h3>
           <section className="payment__method__section">
