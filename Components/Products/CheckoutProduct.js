@@ -6,7 +6,7 @@ import action from '../../lib/action';
 
 const CheckoutProduct = (props) => {
   const { name, imgUrl, price, description, rating = 3, sno } = props;
-  const [dispatch] = useContext(StateContext);
+  const [state, dispatch] = useContext(StateContext);
   const removeFromCart = () => {
     action(dispatch, {
       type: 'REMOVE_FROM_CART',

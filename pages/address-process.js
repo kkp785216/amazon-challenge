@@ -4,7 +4,7 @@ import LoginFooter from '../Components/LoginFooter';
 import { useRouter } from 'next/router';
 import ComponentCheckout from '../Components/ComponentCheckout';
 import { StateContext } from '../lib/StateProvider';
-import Link from 'next/link'
+import LoginFirst from '../Components/LoginFirst';
 
 const Address = () => {
   const router = useRouter();
@@ -164,9 +164,9 @@ const Address = () => {
         </div>
         <LoginFooter />
       </div>}
-      {!logedIn &&
-        <div><Link href="/login"><a className='hyperlink'>Please login first</a></Link></div>
-      }
+    {!logedIn &&
+      <LoginFirst />
+    }
   </>)
 }
 

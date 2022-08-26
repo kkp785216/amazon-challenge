@@ -11,23 +11,23 @@ const Login = () => {
     const router = useRouter();
     const [state, dispatch] = useContext(StateContext);
 
-    const [logedIn] = useState(state.loginUser.logedIn);
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
     const [toggleLogin, setToggleLotin] = useState(true);
 
     useEffect(() => {
         document.getElementById('login-email')?.focus();
     }, []);
-    
+
     useEffect(() => {
-        logedIn && router.back();
-    }, [logedIn]);
+        state.loginUser.logedIn && router.back();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.loginUser.logedIn]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();
         setToggleLotin(false);
     }
-    
+
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         action(dispatch, {

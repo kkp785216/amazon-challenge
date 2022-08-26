@@ -3,7 +3,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link'
 import { StateContext } from '../lib/StateProvider';
-import { useState } from 'react';
 
 const Header = () => {
 
@@ -19,7 +18,7 @@ const Header = () => {
             <nav className="header__navbar">
                 <Link href='/login'>
                     <a className="header__option">
-                        <span className='header__optionLineOne'>Hello <span>{state.loginUser ? (state.loginUser.logedIn? state.logedInUser.user.name : 'Guest') : 'Guest'}</span></span>
+                        <span className='header__optionLineOne'>Hello <span>{state.loginUser.logedIn ? state.loginUser.user.name : 'Guest'}</span></span>
                         <span className='header__optionLineTwo'>Accounts &#38; Lists</span>
                     </a>
                 </Link>

@@ -26,7 +26,7 @@ const Checkout = () => {
           </div>
           <div className="checkout__products">
             {state.cart.length >= 1 ?
-              <FlipMove
+              <div
                 duration={750}
                 easing="ease-out"
               >
@@ -40,7 +40,7 @@ const Checkout = () => {
                     sno={e.sno}
                   />
                 ))}
-              </FlipMove>
+              </div>
               :
               <div className='checkout__empty__cart'>
                 <img className='checkout__empty__cartImg' src="/assets/empty_cart.png" alt="" />
@@ -48,8 +48,6 @@ const Checkout = () => {
                 <p className='checkout__empty__cartPara'>Cart is Empty <Link href='/'><a className='hyperlink'>Go to Home</a></Link> and Purchase Something.</p>
               </div>
             }
-            <button onClick={() => { setCount(count + 1) }}>increment </button>
-            <button onClick={() => { setCount(count - 1) }}> decrenemt</button>
           </div>
         </div>
         <div className="checkout__right">
