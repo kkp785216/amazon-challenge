@@ -4,41 +4,39 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { StateContext } from '../lib/StateProvider'
 import LoginFooter from '../Components/LoginFooter'
+import action from '../lib/action'
 
 const Login = () => {
 
     const router = useRouter();
     const [state, dispatch] = useContext(StateContext);
 
-    const [logedIn, setLogedIn] = useState(false);
+    const [logedIn] = useState(state.loginUser.logedIn);
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
     const [toggleLogin, setToggleLotin] = useState(true);
 
     useEffect(() => {
         document.getElementById('login-email')?.focus();
     }, []);
-
+    
     useEffect(() => {
-        logedIn && router.push('/');
+        logedIn && router.back();
     }, [logedIn]);
-
-    useEffect(() => {
-        state.loginUser.then(a => setLogedIn(a.logedIn));
-    }, [state.loginUser]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();
         setToggleLotin(false);
     }
-
+    
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        dispatch({
+        action(dispatch, {
             type: 'LOGIN',
             email: loginForm.email,
             password: loginForm.password
-        })
+        });
     }
+    console.log(state.loginUser)
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
