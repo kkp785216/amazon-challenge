@@ -1,0 +1,82 @@
+.thanks {
+    background-color: #fff;
+    min-height: calc(100vh - 60px);
+
+    .thanks__container {
+        padding: 19px;
+    }
+
+    .thanks__order__container {
+        padding: 19px;
+        background-color: #f0f2f2;
+        border-radius: 7px;
+
+        .thanks__order__card {
+            padding: 17px 21px;
+            border: 1px solid #d5d9d9;
+            border-radius: 7px;
+            background-color: #fff;
+            font-size: 14px;
+
+            .thanks__order__heading {
+                color: #067d62;
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+
+                svg {
+                    margin-right: 6px;
+                    font-size: 22px;
+                }
+            }
+
+            .thanks__order__message {
+                font-size: 14px;
+                padding: 13px 0;
+            }
+
+            .thanks__order__hr {
+                height: 1px;
+                max-width: 720px;
+                width: 100%;
+                background-color: #e7e7e7;
+                color: #e7e7e7;
+                margin: 9px 0;
+            }
+
+            .thanks__order__products {
+                .thanks__order__products__row {
+                    display: flex;
+                    max-width: 300px;
+                    justify-content: space-between;
+                    .thanks__order__products__date {
+                        strong {
+                            color: #007600;
+                        }
+                    }
+
+                    .thanks__order__products__item {
+                        img{
+                            width: 60px;
+                        }
+                    }
+                }
+            }
+
+            .thanks__order__gotoOrder{
+                font-size: 15px;
+                color: #007185;
+                margin-top: 13px;
+                display: flex;
+                align-items: center;
+
+                svg{
+                    font-size: 14px;
+                    margin-left: 1px;
+                    position: relative;
+                    top: 1.5px;
+                }
+            }
+        }
+    }
+}
