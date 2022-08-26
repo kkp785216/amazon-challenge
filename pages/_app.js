@@ -9,6 +9,8 @@ import '../styles/Address.scss'
 import '../styles/Payment.scss'
 import '../styles/PlaceOrder.scss'
 import '../styles/AmazonThanks.scss'
+import '../styles/YourOrders.scss'
+import '../styles/Breadcrumb.scss'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
 import { StateProvider } from '../lib/StateProvider'
@@ -57,7 +59,7 @@ export const Layout = (props) => {
         <Header />
         {props.children}
       </>)
-    case `/your-order`:
+    case `/your-orders`:
       return (<>
         <Header />
         {props.children}

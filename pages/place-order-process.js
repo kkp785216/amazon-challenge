@@ -3,10 +3,12 @@ import Link from 'next/link'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import RedeemIcon from '@mui/icons-material/Redeem';
 import { StateContext } from '../lib/StateProvider';
+import {useRouter} from 'next/router'
 
 const PlaceOrder = () => {
 
     const [state, dispatch] = useContext(StateContext);
+    const router = useRouter();
 
     const removeFromCart = (sno) => {
         dispatch({
@@ -112,7 +114,7 @@ const PlaceOrder = () => {
                     </div>
                     <div className="placeorder__right">
                         <div className="placeorder__summary__card">
-                            <button className="amazon-btn">Place Your Order and pay</button>
+                            <button className="amazon-btn" onClick={()=>router.push('/amazon-thanks')}>Place Your Order and pay</button>
                             <strong className='placeorder__summary__heading'>Order Sammary</strong>
                             <div className="placeorder__summary__list">
                                 <div className="placeorder__summary__list__row">

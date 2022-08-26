@@ -11,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eaeded;
+  // background-color: #eaeded;
 }
 
 code {
@@ -47,6 +47,17 @@ a {
 }
 
 .hyperlink:hover {
+  color: #c45500;
+  text-decoration: underline;
+}
+
+.hyperlink2 {
+  color: #007185;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hyperlink2:hover {
   color: #c45500;
   text-decoration: underline;
 }

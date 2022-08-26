@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     padding: 21px;
+    background-color: #eaeded;
+    min-height: calc(100vh - 60px);
 
     .checkout__table__header {
         display: flex;
