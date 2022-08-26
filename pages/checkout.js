@@ -8,7 +8,7 @@ import FlipMove from 'react-flip-move';
 import { useRouter } from 'next/router'
 
 const Checkout = () => {
-  const [state, dispatch] = useContext(StateContext);
+  const [state] = useContext(StateContext);
   const router = useRouter();
   return (
     <>

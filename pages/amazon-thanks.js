@@ -1,11 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import Link from 'next/link'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LoginFirst from '../Components/LoginFirst';
+import { StateContext } from '../lib/StateProvider';
 
 const AmazonThanks = () => {
-  return (
-    <div className='thanks'>
+
+  const [state] = useContext(StateContext);
+
+  return (<>
+    {state.loginUser.logedIn &&
+      <div className='thanks'>
       <div className="thanks__container">
         <div className="thanks__order__container">
           <div className="thanks__order__card">
@@ -31,8 +37,11 @@ const AmazonThanks = () => {
           </div>
         </div>
       </div>
-    </div>
-  )
+    </div>}
+    {!state.loginUser.logedIn &&
+      <LoginFirst />
+    }
+    </>)
 }
 
 export default AmazonThanks

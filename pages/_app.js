@@ -11,14 +11,25 @@ import '../styles/PlaceOrder.scss'
 import '../styles/AmazonThanks.scss'
 import '../styles/YourOrders.scss'
 import '../styles/Breadcrumb.scss'
+import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
-import { StateProvider } from '../lib/StateProvider'
+import { StateProvider, StateContext } from '../lib/StateProvider'
 import reducer, { initialState } from '../lib/reducer'
+import action from '../lib/action'
 
 export const Layout = (props) => {
   const router = useRouter();
   const { singleProduct } = router.query;
+  const [state, dispatch] = useContext(StateContext);
+
+  useEffect(() => {
+    process.browser && !state.loginUser.logedIn && window.localStorage.getItem('user_amazon_challenge') && action(dispatch, {
+      type: 'DEFAULT_LOGIN',
+      user: window.localStorage.getItem('user_amazon_challenge')
+    });
+  }, []);
+
   switch (router.pathname) {
     case '/':
       return (<>
@@ -68,7 +79,6 @@ export const Layout = (props) => {
       return (<>
         {props.children}
       </>)
-
   }
 }
 

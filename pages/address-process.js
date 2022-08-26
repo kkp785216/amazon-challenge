@@ -9,7 +9,6 @@ import LoginFirst from '../Components/LoginFirst';
 const Address = () => {
   const router = useRouter();
   const [state] = useContext(StateContext)
-  const [logedIn] = useState(state.loginUser.logedIn);
 
   const [addressForm, setAddressForm] = useState({
     country: 'India',
@@ -47,7 +46,7 @@ const Address = () => {
   }
 
   return (<>
-    {logedIn &&
+    {state.loginUser.logedIn &&
       <div className="address__box">
         <div className="address">
           <ComponentCheckout />
@@ -164,7 +163,7 @@ const Address = () => {
         </div>
         <LoginFooter />
       </div>}
-    {!logedIn &&
+    {!state.loginUser.logedIn &&
       <LoginFirst />
     }
   </>)

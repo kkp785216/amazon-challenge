@@ -36,7 +36,7 @@ const Login = () => {
             password: loginForm.password
         });
     }
-    console.log(state.loginUser)
+    
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>
