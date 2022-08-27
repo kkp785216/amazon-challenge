@@ -17,6 +17,8 @@ import Header from '../Components/Header'
 import { StateProvider, StateContext } from '../lib/StateProvider'
 import reducer, { initialState } from '../lib/reducer'
 import action from '../lib/action'
+import store from '../redux/store'
+import { Provider } from 'react-redux'
 
 export const Layout = (props) => {
   const router = useRouter();
@@ -85,9 +87,11 @@ export const Layout = (props) => {
 function MyApp({ Component, pageProps }) {
   return (<>
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Layout >
-        <Component {...pageProps} />
-      </Layout>
+      <Provider store={store}>
+        <Layout >
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </StateProvider>
   </>)
 }

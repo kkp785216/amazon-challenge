@@ -1,18 +1,17 @@
-import React, { useContext } from 'react'
-import { StateContext } from '../../../lib/StateProvider'
+import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import { useSelector, useDispatch } from 'react-redux';
 
 const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price, id, rating = 3 } = props
-    const [state, dispatch] = useContext(StateContext);
-
+    const {cart} = useSelector(state => state);
+    const dispatch = useDispatch();
     const addToCart = () => {
-        // Dispatch the item to the data layer
         dispatch({
             type: 'ADD_TO_CART',
-            item: { name, imgUrl, fakePrice, price, id, rating, sno: state.cart.length }
-        })
+            item: { name, imgUrl, fakePrice, price, id, rating, sno: cart.length }
+        });
     }
     return (
         <div className="home__products__col" key={id}>
@@ -36,8 +35,8 @@ const HomeProductsLayout = (props) => {
             <span className='home__products__name'>{name}</span>
             <span className='home__products__cartBtn' onClick={addToCart}>
                 Add to Cart
-                {state.cart.filter(a => id === a.id).length >= 1 &&
-                    <span className='home__products__cartBtn__itemoverlay'>{state.cart.filter(a => id === a.id).length}</span>}
+                {cart.filter(a => id === a.id).length >= 1 &&
+                    <span className='home__products__cartBtn__itemoverlay'>{cart.filter(a => id === a.id).length}</span>}
             </span>
         </div>
     )

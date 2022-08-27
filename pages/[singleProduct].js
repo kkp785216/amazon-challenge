@@ -1,10 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head';
+import store from '../lib/store';
 
 const SingleProduct = () => {
   const router = useRouter();
   const { singleProduct } = router.query
+  console.log(store)
   return (<>
     <Head>
       <title>Amazon Challenge - {singleProduct}</title>
