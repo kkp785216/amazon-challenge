@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import CheckoutProduct from '../Components/Products/CheckoutProduct'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { StateContext } from '../lib/StateProvider';
 import Link from 'next/link'
-import FlipMove from 'react-flip-move';
+// import FlipMove from 'react-flip-move';
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux';
 
 const Checkout = () => {
-  const [state] = useContext(StateContext);
+  const { cart } = useSelector(state => state);
   const router = useRouter();
   return (
     <>
@@ -25,12 +25,12 @@ const Checkout = () => {
             <small>Price</small>
           </div>
           <div className="checkout__products">
-            {state.cart.length >= 1 ?
+            {cart.length >= 1 ?
               <div
                 duration={750}
                 easing="ease-out"
               >
-                {state.cart.map((e, i) => (
+                {cart.map((e, i) => (
                   <CheckoutProduct
                     key={e.sno}
                     imgUrl={e.imgUrl}
@@ -51,15 +51,15 @@ const Checkout = () => {
           </div>
         </div>
         <div className="checkout__right">
-          {state.cart.reduce((a, b) => a + parseInt(b.price), 0) >= 5000 && <div className="checkout__alert">
+          {cart.reduce((a, b) => a + parseInt(b.price), 0) >= 5000 && <div className="checkout__alert">
             <CheckCircleRoundedIcon />
             <span>Your order is eligible for FREE Delivery. Select this option at checkout. Details</span>
           </div>}
           <div className="checkout__subtotal">
-            <span className='subtotal__items'>Subtotal ({state.cart.length} items):</span>
-            <span className='subtotal__price'>{state.cart.reduce((a, b) => a + parseInt(b.price), 0)}/-</span>
+            <span className='subtotal__items'>Subtotal ({cart.length} items):</span>
+            <span className='subtotal__price'>{cart.reduce((a, b) => a + parseInt(b.price), 0)}/-</span>
           </div>
-          <button onClick={()=>{router.push('/address-process')}} className="subtotal__buyBtn">Proceed to Buy</button>
+          <button onClick={() => { router.push('/address-process') }} className="subtotal__buyBtn">Proceed to Buy</button>
         </div>
       </div>
     </>

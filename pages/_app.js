@@ -11,25 +11,25 @@ import '../styles/PlaceOrder.scss'
 import '../styles/AmazonThanks.scss'
 import '../styles/YourOrders.scss'
 import '../styles/Breadcrumb.scss'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Header from '../Components/Header'
-import { StateProvider, StateContext } from '../lib/StateProvider'
-import reducer, { initialState } from '../lib/reducer'
-import action from '../lib/action'
 import store from '../redux/store'
 import { Provider } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import action from '../redux/action'
 
 export const Layout = (props) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { singleProduct } = router.query;
-  const [state, dispatch] = useContext(StateContext);
+  const { loginUser } = useSelector(state => state);
 
   useEffect(() => {
-    process.browser && !state.loginUser.logedIn && window.localStorage.getItem('user_amazon_challenge') && action(dispatch, {
+    process.browser && !loginUser.logedIn && window.localStorage.getItem('user_amazon_challenge') && dispatch(action({
       type: 'DEFAULT_LOGIN',
       user: window.localStorage.getItem('user_amazon_challenge')
-    });
+    }));
   }, []);
 
   switch (router.pathname) {
@@ -86,13 +86,11 @@ export const Layout = (props) => {
 
 function MyApp({ Component, pageProps }) {
   return (<>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <Provider store={store}>
-        <Layout >
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    </StateProvider>
+    <Provider store={store}>
+      <Layout >
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   </>)
 }
 

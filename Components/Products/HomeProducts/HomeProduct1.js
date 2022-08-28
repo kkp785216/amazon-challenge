@@ -2,16 +2,17 @@ import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { useSelector, useDispatch } from 'react-redux';
+import action from '../../../redux/action';
 
 const HomeProductsLayout = (props) => {
     const { heading, name, imgUrl, fakePrice, price, id, rating = 3 } = props
     const {cart} = useSelector(state => state);
     const dispatch = useDispatch();
     const addToCart = () => {
-        dispatch({
+        dispatch(action({
             type: 'ADD_TO_CART',
             item: { name, imgUrl, fakePrice, price, id, rating, sno: cart.length }
-        });
+        }));
     }
     return (
         <div className="home__products__col" key={id}>

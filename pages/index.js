@@ -5,7 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import HomeProduct1 from '../Components/Products/HomeProducts/HomeProduct1'
-import { useSelector } from 'react-redux';
 
 const HomeFlash = (props) => {
     const { imgUrl } = props;
@@ -17,8 +16,6 @@ const HomeFlash = (props) => {
 }
 
 export default function Home() {
-    const mystore = useSelector(state => state)
-    console.log(mystore)
     return (
         <>
             <Head>

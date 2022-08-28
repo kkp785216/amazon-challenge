@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { StateContext } from '../../lib/StateProvider';
-import action from '../../lib/action';
+import { useDispatch } from 'react-redux';
+import action from '../../redux/action'
 
 const CheckoutProduct = (props) => {
   const { name, imgUrl, price, description, rating = 3, sno } = props;
-  const [state, dispatch] = useContext(StateContext);
+  const dispatch = useDispatch();
   const removeFromCart = () => {
-    action(dispatch, {
+    dispatch(action({
       type: 'REMOVE_FROM_CART',
       sno: parseInt(sno)
-    });
+    }));
   }
   return (
     <div className='checkout__products__row'>

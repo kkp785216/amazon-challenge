@@ -1,6 +1,9 @@
-const actiona = (action) => {
+import { collection, getDocs, doc, getDoc, query, where } from "firebase/firestore";
+import { db } from "../lib/firebase";
+
+const action = (action) => {
     return async (dispatch) => {
-        switch (action?.type) {
+        switch (action.type) {
             case 'LOGIN':
                 try {
                     // Check if user loged in
@@ -43,7 +46,7 @@ const actiona = (action) => {
                     });
                 }
                 break;
-    
+
             case 'DEFAULT_LOGIN':
                 try {
                     const q1Shapshot = await getDoc(doc(db, "users", action.user));
@@ -60,26 +63,25 @@ const actiona = (action) => {
                     console.log(err);
                 }
                 break;
-    
+
             case 'ADD_TO_CART':
-                console.log('hii this is krishna')
                 dispatch({
                     type: 'ADD_TO_CART',
-                    item: action.item
+                    payload: {item: action.item}
                 });
                 break;
-    
+
             case 'REMOVE_FROM_CART':
                 dispatch({
                     type: 'REMOVE_FROM_CART',
-                    sno: parseInt(action.sno)
+                    payload: {sno: parseInt(action.sno)}
                 });
                 break;
-    
+
             default:
                 break;
         }
     }
 }
 
-export default actiona;
+export default action;

@@ -1,12 +1,12 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
 import SearchIcon from '@mui/icons-material/Search';
 import LoginFirst from '../Components/LoginFirst';
-import { StateContext } from '../lib/StateProvider';
+import { useSelector } from 'react-redux';
 
 const YourOrders = () => {
 
-    const [state] = useContext(StateContext);
+    const {cart, loginUser} = useSelector(state => state);
 
     const breadcrumbList = [
         {
@@ -22,7 +22,7 @@ const YourOrders = () => {
     ]
 
     return (<>
-        {state.loginUser.logedIn &&
+        {loginUser.logedIn &&
             <div className='yourorders'>
                 <div className='yourorders__container'>
                     <div className="yourorders__breadcrumb">
@@ -40,7 +40,7 @@ const YourOrders = () => {
                     </div>
                 </div>
             </div>}
-        {!state.loginUser.logedIn &&
+        {!loginUser.logedIn &&
             <LoginFirst />
         }
     </>)

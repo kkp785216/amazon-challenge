@@ -1,26 +1,27 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import RedeemIcon from '@mui/icons-material/Redeem';
-import { StateContext } from '../lib/StateProvider';
 import { useRouter } from 'next/router'
-import action from '../lib/action';
+import action from '../redux/action';
 import LoginFirst from '../Components/LoginFirst';
+import {useSelector, useDispatch} from 'react-redux'
 
 const PlaceOrder = () => {
 
-    const [state, dispatch] = useContext(StateContext);
+    const {cart, loginUser} = useSelector(state => state);
+    const dispatch = useDispatch();
     const router = useRouter();
 
     const removeFromCart = (sno) => {
-        action(dispatch, {
+        dispatch(action({
             type: 'REMOVE_FROM_CART',
             sno: parseInt(sno)
-        });
+        }));
     }
 
     return (<>
-        {state.loginUser.logedIn &&
+        {loginUser.logedIn &&
             <div className='placeorder'>
                 <div className="placeorder__container">
                     <ComponentCheckout />
@@ -87,7 +88,7 @@ const PlaceOrder = () => {
                                     </div>
                                     <div className="placeorder__reviews__row">
                                         <div className="placeorder__reviews__col">
-                                            {state.cart?.map((e, i) => (
+                                            {cart?.map((e, i) => (
                                                 <div className="placeorder__reviews__product" key={i}>
                                                     <img className='placeorder__reviews__productImg' src={e.imgUrl} alt="" />
                                                     <div className="placeorder__reviews__product__details">
@@ -122,7 +123,7 @@ const PlaceOrder = () => {
                                 <div className="placeorder__summary__list">
                                     <div className="placeorder__summary__list__row">
                                         <span>Items:</span>
-                                        <span>₹{state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
+                                        <span>₹{cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
                                     </div>
                                     <div className="placeorder__summary__list__row">
                                         <span>Delivery:</span>
@@ -130,7 +131,7 @@ const PlaceOrder = () => {
                                     </div>
                                     <div className="placeorder__summary__list__row">
                                         <span>Total:</span>
-                                        <span>₹{state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
+                                        <span>₹{cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
                                     </div>
                                     <div className="placeorder__summary__list__row">
                                         <span>Promotion Applied:</span>
@@ -139,9 +140,9 @@ const PlaceOrder = () => {
                                 </div>
                                 <div className="placeorder__summary__orderTotal">
                                     <span>Order Total:</span>
-                                    <span>₹{state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
+                                    <span>₹{cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)?.toFixed(2)}</span>
                                 </div>
-                                <span className="placeorder__summary__saving">Your Savings: ₹ {(state.cart?.map(e => parseInt(e.fakePrice))?.reduce((accu, curr) => (accu + curr), 0) - state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)).toFixed(2)} ({parseInt((state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0) / (state.cart?.map(e => parseInt(e.fakePrice))?.reduce((accu, curr) => (accu + curr), 0) - state.cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0))) * 100)}%)</span>
+                                <span className="placeorder__summary__saving">Your Savings: ₹ {(cart?.map(e => parseInt(e.fakePrice))?.reduce((accu, curr) => (accu + curr), 0) - cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0)).toFixed(2)} ({parseInt((cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0) / (cart?.map(e => parseInt(e.fakePrice))?.reduce((accu, curr) => (accu + curr), 0) - cart?.map(e => parseInt(e.price))?.reduce((accu, curr) => (accu + curr), 0))) * 100)}%)</span>
                                 <ul className="placeorder__summary__savingList">
                                     <li>FREE Delivery</li>
                                     <li>Item discount</li>
@@ -155,7 +156,7 @@ const PlaceOrder = () => {
                     </div>
                 </div>
             </div>}
-        {!state.loginUser.logedIn &&
+        {!loginUser.logedIn &&
             <LoginFirst />
         }
     </>)

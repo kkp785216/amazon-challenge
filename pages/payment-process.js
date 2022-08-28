@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import LoginFooter from '../Components/LoginFooter'
 import ComponentCheckout from '../Components/ComponentCheckout'
-import { StateContext } from '../lib/StateProvider'
 import LoginFirst from '../Components/LoginFirst'
+import { useSelector } from 'react-redux'
 
 const Payment = () => {
 
   const router = useRouter();
-  const [state] = useContext(StateContext);
+  const { loginUser } = useSelector(state => state);
 
   const [debitCardForm, setDebitCardForm] = useState({
     number: '',
@@ -45,7 +45,7 @@ const Payment = () => {
     }
   }
   return (<>
-    {state.loginUser.logedIn &&
+    {loginUser.logedIn &&
       <div className="payment__box">
         <div className="payment">
           <ComponentCheckout />
@@ -155,7 +155,7 @@ const Payment = () => {
         </div>
         <LoginFooter />
       </div>}
-    {!state.loginUser.logedIn &&
+    {!loginUser.logedIn &&
       <LoginFirst />
     }
   </>)

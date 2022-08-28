@@ -1,27 +1,28 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { StateContext } from '../lib/StateProvider'
 import LoginFooter from '../Components/LoginFooter'
-import action from '../lib/action'
+import { useSelector, useDispatch } from 'react-redux'
+import action from '../redux/action'
 
 const Login = () => {
 
     const router = useRouter();
-    const [state, dispatch] = useContext(StateContext);
+    const dispatch = useDispatch();
 
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
     const [toggleLogin, setToggleLotin] = useState(true);
+    const { loginUser } = useSelector(state => state);
 
     useEffect(() => {
         document.getElementById('login-email')?.focus();
     }, []);
 
     useEffect(() => {
-        state.loginUser.logedIn && router.back();
+        loginUser.logedIn && router.back();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.loginUser.logedIn]);
+    }, [loginUser]);
 
     const handleToggleLogin = (e) => {
         e.preventDefault();
@@ -30,13 +31,13 @@ const Login = () => {
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        action(dispatch, {
+        dispatch(action({
             type: 'LOGIN',
             email: loginForm.email,
             password: loginForm.password
-        });
+        }));
     }
-    
+
     return (<>
         <Head>
             <title>Amazon Challenge - Login</title>

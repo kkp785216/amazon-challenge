@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState } from 'react'
 import { countries, states } from '../lib/countries';
 import LoginFooter from '../Components/LoginFooter';
 import { useRouter } from 'next/router';
 import ComponentCheckout from '../Components/ComponentCheckout';
-import { StateContext } from '../lib/StateProvider';
 import LoginFirst from '../Components/LoginFirst';
+import { useSelector } from 'react-redux';
 
 const Address = () => {
   const router = useRouter();
-  const [state] = useContext(StateContext)
+  const { loginUser } = useSelector(state => state);
 
   const [addressForm, setAddressForm] = useState({
     country: 'India',
@@ -46,7 +46,7 @@ const Address = () => {
   }
 
   return (<>
-    {state.loginUser.logedIn &&
+    {loginUser.logedIn &&
       <div className="address__box">
         <div className="address">
           <ComponentCheckout />
@@ -163,7 +163,7 @@ const Address = () => {
         </div>
         <LoginFooter />
       </div>}
-    {!state.loginUser.logedIn &&
+    {!loginUser.logedIn &&
       <LoginFirst />
     }
   </>)
