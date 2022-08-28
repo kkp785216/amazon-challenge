@@ -17,6 +17,12 @@ const reducer = (state, action) => {
                 cart: [...state.cart.filter(a => a.sno !== payload.sno)]
             }
 
+        case 'UPDATE_CART':
+            return {
+                ...state,
+                cart: [...state.cart.filter(a => a.sno !== payload.sno)]
+            }
+
         case 'LOGIN':
             return {
                 ...state,

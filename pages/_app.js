@@ -26,7 +26,8 @@ export const Layout = (props) => {
   const { loginUser } = useSelector(state => state);
 
   useEffect(() => {
-    process.browser && !loginUser.logedIn && window.localStorage.getItem('user_amazon_challenge') && dispatch(action({
+    process.browser && !loginUser.logedIn && window.localStorage.getItem('user_amazon_challenge') &&
+    dispatch(action({
       type: 'DEFAULT_LOGIN',
       user: window.localStorage.getItem('user_amazon_challenge')
     }));

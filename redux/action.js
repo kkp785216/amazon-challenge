@@ -1,7 +1,10 @@
-import { collection, getDocs, doc, getDoc, query, where } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, setDoc, query, where } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import store from './store'
 
 const action = (action) => {
+    const { cart, loginUser } = store.getState();
+    console.log(cart)
     return async (dispatch) => {
         switch (action.type) {
             case 'LOGIN':
@@ -65,16 +68,39 @@ const action = (action) => {
                 break;
 
             case 'ADD_TO_CART':
-                dispatch({
-                    type: 'ADD_TO_CART',
-                    payload: {item: action.item}
-                });
+                if (loginUser.logedIn) {
+                    try {
+                        const cartRef = doc(collection(db, "cart"));
+                        let res = await setDoc(cartRef, {
+                            ...action.item,
+                            _id: cartRef.id
+                        });
+                        // dispatch({
+                        //     type: 'ADD_TO_CART',
+                        //     payload: { item: action.item }
+                        // });
+                    } catch (error) {
+                        console.log("Item adding to card faild:", error);
+                    }
+                } else {
+                    dispatch({
+                        type: 'ADD_TO_CART',
+                        payload: { item: action.item }
+                    });
+                }
                 break;
 
             case 'REMOVE_FROM_CART':
                 dispatch({
                     type: 'REMOVE_FROM_CART',
-                    payload: {sno: parseInt(action.sno)}
+                    payload: { sno: parseInt(action.sno) }
+                });
+                break;
+
+            case 'UPDATE_CART':
+                dispatch({
+                    type: 'UPDATE_CART',
+                    payload: { sno: parseInt(action.sno) }
                 });
                 break;
 
