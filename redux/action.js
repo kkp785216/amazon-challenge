@@ -1,10 +1,33 @@
-import { collection, getDocs, doc, getDoc, setDoc, query, where } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, setDoc, query, where, deleteDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import store from './store'
 
 const action = (action) => {
+
     const { cart, loginUser } = store.getState();
-    console.log(cart)
+    const updateCart = async (dispatch, action) => {
+        if (loginUser.logedIn) {
+            try {
+                const q1 = query(collection(db, "cart"), where("user_id", "==", loginUser.user._id));
+                const q1Shapshot = await getDocs(q1);
+                const q1Data = q1Shapshot.docs.map(a => a.data());
+                console.log(q1Data)
+
+                dispatch({
+                    type: 'ADD_TO_CART',
+                    payload: { items: q1Data }
+                });
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            dispatch({
+                type: 'ADD_TO_CART',
+                payload: { items: [...cart, action.item] }
+            });
+        }
+    }
+
     return async (dispatch) => {
         switch (action.type) {
             case 'LOGIN':
@@ -71,37 +94,45 @@ const action = (action) => {
                 if (loginUser.logedIn) {
                     try {
                         const cartRef = doc(collection(db, "cart"));
-                        let res = await setDoc(cartRef, {
+                        await setDoc(cartRef, {
                             ...action.item,
-                            _id: cartRef.id
+                            _id: cartRef.id,
+                            user_id: loginUser.user._id
                         });
-                        // dispatch({
-                        //     type: 'ADD_TO_CART',
-                        //     payload: { item: action.item }
-                        // });
+
+                        await updateCart(dispatch, action);
+
                     } catch (error) {
                         console.log("Item adding to card faild:", error);
                     }
                 } else {
                     dispatch({
                         type: 'ADD_TO_CART',
-                        payload: { item: action.item }
+                        payload: { items: [...cart, action.item] }
                     });
                 }
                 break;
 
             case 'REMOVE_FROM_CART':
-                dispatch({
-                    type: 'REMOVE_FROM_CART',
-                    payload: { sno: parseInt(action.sno) }
-                });
+                if (loginUser.logedIn) {
+                    try {
+                        await deleteDoc(doc(db, "cart", action._id));
+                        
+                        await updateCart(dispatch, action);
+
+                    } catch (error) {
+                        console.log("Item removing from cart faild:", error);
+                    }
+                } else {
+                    dispatch({
+                        type: 'REMOVE_FROM_CART',
+                        payload: { sno: parseInt(action.sno) }
+                    });
+                }
                 break;
 
             case 'UPDATE_CART':
-                dispatch({
-                    type: 'UPDATE_CART',
-                    payload: { sno: parseInt(action.sno) }
-                });
+                await updateCart(dispatch, action);
                 break;
 
             default:

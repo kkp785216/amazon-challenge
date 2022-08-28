@@ -5,12 +5,13 @@ import { useDispatch } from 'react-redux';
 import action from '../../redux/action'
 
 const CheckoutProduct = (props) => {
-  const { name, imgUrl, price, description, rating = 3, sno } = props;
+  const { name, imgUrl, price, description, rating = 3, sno, id, _id } = props;
   const dispatch = useDispatch();
   const removeFromCart = () => {
     dispatch(action({
       type: 'REMOVE_FROM_CART',
-      sno: parseInt(sno)
+      sno: parseInt(sno),
+      _id: _id
     }));
   }
   return (

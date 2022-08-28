@@ -8,16 +8,10 @@ const reducer = (state, action) => {
         case 'ADD_TO_CART':
             return {
                 ...state,
-                cart: [...state.cart, payload.item]
+                cart: [...payload.items]
             }
 
         case 'REMOVE_FROM_CART':
-            return {
-                ...state,
-                cart: [...state.cart.filter(a => a.sno !== payload.sno)]
-            }
-
-        case 'UPDATE_CART':
             return {
                 ...state,
                 cart: [...state.cart.filter(a => a.sno !== payload.sno)]

@@ -32,12 +32,14 @@ const Checkout = () => {
               >
                 {cart.map((e, i) => (
                   <CheckoutProduct
-                    key={e.sno}
+                    key={e._id ? e._id : e.sno}
                     imgUrl={e.imgUrl}
                     name={e.name}
                     description={e.description}
                     price={e.price}
                     sno={e.sno}
+                    id={e.id}
+                    _id={e._id ? e._id : null}
                   />
                 ))}
               </div>

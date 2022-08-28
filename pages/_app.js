@@ -31,7 +31,12 @@ export const Layout = (props) => {
       type: 'DEFAULT_LOGIN',
       user: window.localStorage.getItem('user_amazon_challenge')
     }));
-  }, []);
+
+    loginUser.logedIn &&
+    dispatch(action({
+      type: 'UPDATE_CART'
+    }));
+  }, [loginUser.logedIn]);
 
   switch (router.pathname) {
     case '/':
