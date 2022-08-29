@@ -1,24 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import RedeemIcon from '@mui/icons-material/Redeem';
 import { useRouter } from 'next/router'
 import action from '../redux/action';
 import LoginFirst from '../Components/LoginFirst';
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '../lib/firebase';
 
 const PlaceOrder = () => {
 
-    const {cart, loginUser} = useSelector(state => state);
+    const { cart, loginUser, address } = useSelector(state => state);
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const removeFromCart = (sno) => {
+    const removeFromCart = (sno, _id) => {
         dispatch(action({
             type: 'REMOVE_FROM_CART',
-            sno: parseInt(sno)
+            sno: parseInt(sno),
+            _id: _id
         }));
     }
+
+    useEffect(() => {
+        (async () => {
+            if (loginUser.logedIn && address === null) {
+                const q1Shapshot = await getDoc(doc(db, "profile", loginUser.user._id));
+                if (q1Shapshot.exists()) {
+                    dispatch(action({
+                        type: 'ADDRESS',
+                        address: q1Shapshot.data().address
+                    }));
+                } else {
+                    console.log("No such document!");
+                }
+            }
+        })();
+    }, [loginUser.logedIn]);
 
     return (<>
         {loginUser.logedIn &&
@@ -37,14 +56,18 @@ const PlaceOrder = () => {
                                         <h5>Shipping address</h5>
                                         <Link href='/address-process'><a className='hyperlink'>Change</a></Link>
                                     </div>
-                                    <div className='placeorder__method__address__details'>
-                                        <span>Krishna Prajapati</span>
-                                        <span>Alternate Mo. No. 4598752156</span>
-                                        <span>Hallapur, Shantinagar</span>
-                                        <span>Ballia, UTTAR PRADESH 145875</span>
-                                        <span>India</span>
-                                        <span>Phone: 6565656565</span>
-                                    </div>
+                                    {address ?
+                                        <div className='placeorder__method__address__details'>
+                                            <span>{address.name}</span>
+                                            <span>{address.street}</span>
+                                            <span>{address.town}, {address.state} - {address.pincode}</span>
+                                            <span>{address.country}</span>
+                                            <span>Phone: {address.phone}</span>
+                                        </div> :
+                                        <div className='placeorder__method__address__details'>
+                                            <span>Please add address</span>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="placeorder__method__payment">
                                     <div className="placeorder__method__heading">
@@ -99,7 +122,7 @@ const PlaceOrder = () => {
                                                             <img src="/assets/fulfilled.png" width='66' alt="" />
                                                         </div>
                                                         <span className="placeorder__reviews__product__save">You Save: ₹{e.fakePrice - e.price} ({parseInt((e.price / (e.fakePrice - e.price)) * 100)}%)</span>
-                                                        <span className="placeorder__reviews__product__quantity">Quantity: 1<span onClick={() => removeFromCart(e.sno)} className='hyperlink'>Delete</span></span>
+                                                        <span className="placeorder__reviews__product__quantity">Quantity: 1<span onClick={() => removeFromCart(e.sno, e._id)} className='hyperlink'>Delete</span></span>
                                                         <span className='placeorder__reviews__product__soldBy'>Sold by: FIRST MART</span>
                                                         <button className="placeorder__reviews__product__giftBtn">
                                                             <RedeemIcon />

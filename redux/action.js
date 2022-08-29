@@ -11,7 +11,6 @@ const action = (action) => {
                 const q1 = query(collection(db, "cart"), where("user_id", "==", loginUser.user._id));
                 const q1Shapshot = await getDocs(q1);
                 const q1Data = q1Shapshot.docs.map(a => a.data());
-                console.log(q1Data)
 
                 dispatch({
                     type: 'ADD_TO_CART',
@@ -77,7 +76,6 @@ const action = (action) => {
                 try {
                     const q1Shapshot = await getDoc(doc(db, "users", action.user));
                     if (q1Shapshot.exists()) {
-                        console.log(q1Shapshot.data());
                         dispatch({
                             type: 'LOGIN',
                             payload: { logedIn: true, alert: 'success', message: 'Login Successfully', user: q1Shapshot.data() }
@@ -117,7 +115,7 @@ const action = (action) => {
                 if (loginUser.logedIn) {
                     try {
                         await deleteDoc(doc(db, "cart", action._id));
-                        
+
                         await updateCart(dispatch, action);
 
                     } catch (error) {
@@ -133,6 +131,13 @@ const action = (action) => {
 
             case 'UPDATE_CART':
                 await updateCart(dispatch, action);
+                break;
+
+            case 'ADDRESS':
+                dispatch({
+                    type: 'ADDRESS',
+                    payload: action.address
+                });
                 break;
 
             default:

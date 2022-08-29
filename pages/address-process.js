@@ -7,11 +7,14 @@ import LoginFirst from '../Components/LoginFirst';
 import { useSelector } from 'react-redux';
 import { collection, where, doc, getDocs, setDoc, query, deleteDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import { useDispatch } from 'react-redux';
+import action from '../redux/action';
 
 const Address = () => {
   const router = useRouter();
   const { loginUser } = useSelector(state => state);
   const [savedAddress, setSavedAddress] = useState([]);
+  const dispatch = useDispatch();
 
   const [addressForm, setAddressForm] = useState({
     country: 'India',
@@ -57,6 +60,24 @@ const Address = () => {
           user_id: loginUser.user._id
         });
         await addressFormUpdate();
+        const addressRef1 = doc(db, "profile", loginUser.user._id);
+        await setDoc(addressRef1, {
+          address: {
+            ...addressForm,
+            _id: addressRef1.id,
+            user_id: loginUser.user._id
+          },
+          user_id: loginUser.user._id
+        }, { merge: true });
+        dispatch(action({
+          type: 'ADDRESS',
+          address: {
+            ...addressForm,
+            _id: addressRef1.id,
+            user_id: loginUser.user._id
+          }
+        }));
+        router.push('/payment-process');
       } catch (error) {
         console.log('address not saved:', error);
       }
@@ -70,7 +91,6 @@ const Address = () => {
         const q1Shapshot = await getDocs(q1);
         const q1Data = q1Shapshot.docs.map(a => a.data());
         setSavedAddress([...q1Data]);
-        console.log(savedAddress);
       }
     } catch { }
   }
@@ -88,6 +108,27 @@ const Address = () => {
     }
   }
 
+  const handleUseAddress = async (addressForm) => {
+    if (loginUser.logedIn) {
+      const addressRef = doc(db, "profile", loginUser.user._id);
+      await setDoc(addressRef, {
+        address: {
+          ...addressForm,
+          user_id: loginUser.user._id
+        },
+        user_id: loginUser.user._id
+      }, { merge: true });
+      dispatch(action({
+        type: 'ADDRESS',
+        address: {
+          ...addressForm,
+          user_id: loginUser.user._id
+        }
+      }));
+      router.push('/payment-process');
+    }
+  }
+
   return (<>
     {loginUser.logedIn &&
       <div className="address__box">
@@ -102,15 +143,15 @@ const Address = () => {
               {savedAddress.length >= 1 ? savedAddress.map((e, i) => (
                 <div key={i} className="address__already__col">
                   <div>
-                    <span className='address__already__name'>Krishna Prajapati</span>
+                    <span className='address__already__name'>{e.name}</span>
                     <span>Mobile number: {e.phone}</span>
                     <span>{e.street}</span>
                     <span>{e.town}, {e.state} - {e.pincode}</span>
                     <span>{e.country}</span>
-                    <button className='amazon-btn'>Deliver to this address</button>
+                    <button onClick={() => { handleUseAddress(e) }} className='amazon-btn'>Deliver to this address</button>
                     <div className="address__already__update">
                       <button>Edit</button>
-                      <button onClick={()=>deleteAddress(e._id)}>Delete</button>
+                      <button onClick={() => deleteAddress(e._id)}>Delete</button>
                     </div>
                   </div>
                 </div>)) :

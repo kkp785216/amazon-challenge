@@ -1,6 +1,8 @@
 export const initialState = {
     cart: [],
-    loginUser: { logedIn: false, alert: null, message: '' }
+    loginUser: { logedIn: false, alert: null, message: '' },
+    payment: {status: false, method: ''},
+    address: null
 }
 const reducer = (state, action) => {
     const {type, payload} = action;
@@ -21,6 +23,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loginUser: payload
+            }
+
+        case 'ADDRESS':
+            return {
+                ...state,
+                address: payload
             }
 
         default:
