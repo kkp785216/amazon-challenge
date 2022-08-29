@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { countries, states } from '../lib/countries';
 import LoginFooter from '../Components/LoginFooter';
 import { useRouter } from 'next/router';
 import ComponentCheckout from '../Components/ComponentCheckout';
 import LoginFirst from '../Components/LoginFirst';
 import { useSelector } from 'react-redux';
+import { collection, where, doc, getDocs, setDoc, query, deleteDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 const Address = () => {
   const router = useRouter();
   const { loginUser } = useSelector(state => state);
+  const [savedAddress, setSavedAddress] = useState([]);
 
   const [addressForm, setAddressForm] = useState({
     country: 'India',
@@ -24,12 +27,16 @@ const Address = () => {
     addressType: 'Select an Address Type'
   });
 
+  useEffect(() => {
+    addressFormUpdate();
+  }, [loginUser.logedIn]);
+
   const autofill = {
     "country": "India",
-    "name": "KRisHnA Kumar",
-    "phone": "0000000000",
-    "pincode": "000000",
-    "house": "00",
+    "name": "Krishna Kumar",
+    "phone": "9440095500",
+    "pincode": "251236",
+    "house": "05",
     "street": "Hallapur",
     "landmark": "Siv Mandir",
     "town": "Gorakhpur",
@@ -39,10 +46,46 @@ const Address = () => {
     "checked": "on"
   }
 
-  const handleAddressFormSubmit = (e) => {
+  const handleAddressFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(addressForm);
-    router.push('/payment-process');
+    if (loginUser.logedIn) {
+      try {
+        const addressRef = doc(collection(db, "address"));
+        await setDoc(addressRef, {
+          ...addressForm,
+          _id: addressRef.id,
+          user_id: loginUser.user._id
+        });
+        await addressFormUpdate();
+      } catch (error) {
+        console.log('address not saved:', error);
+      }
+    }
+  }
+
+  const addressFormUpdate = async () => {
+    try {
+      if (loginUser.logedIn) {
+        const q1 = query(collection(db, "address"), where("user_id", "==", loginUser.user._id));
+        const q1Shapshot = await getDocs(q1);
+        const q1Data = q1Shapshot.docs.map(a => a.data());
+        setSavedAddress([...q1Data]);
+        console.log(savedAddress);
+      }
+    } catch { }
+  }
+
+  const deleteAddress = async (_id) => {
+    if (loginUser.logedIn) {
+      try {
+        await deleteDoc(doc(db, "address", _id));
+
+        await addressFormUpdate();
+
+      } catch (error) {
+        console.log("Address removing faild:", error);
+      }
+    }
   }
 
   return (<>
@@ -56,35 +99,23 @@ const Address = () => {
               <span className='address__instruction'>Is the address you&apos;d like to use displayed below? If so, click the corresponding &quot;Deliver to this address&quot; button. Or you can <a className='hyperlink' href="#new-address">enter a new delivery address.</a></span>
             </div>
             <div className="address__already__row">
-              <div className="address__already__col">
-                <div>
-                  <span className='address__already__name'>Krishna Prajapati</span>
-                  <span>Alternate Mo. No. 4598752156</span>
-                  <span>Hallapur, Shantinagar</span>
-                  <span>Ballia, UTTAR PRADESH 145875</span>
-                  <span>India</span>
-                  <button className='amazon-btn'>Deliver to this address</button>
-                  <div className="address__already__update">
-                    <button>Edit</button>
-                    <button>Delete</button>
+              {savedAddress.length >= 1 ? savedAddress.map((e, i) => (
+                <div key={i} className="address__already__col">
+                  <div>
+                    <span className='address__already__name'>Krishna Prajapati</span>
+                    <span>Mobile number: {e.phone}</span>
+                    <span>{e.street}</span>
+                    <span>{e.town}, {e.state} - {e.pincode}</span>
+                    <span>{e.country}</span>
+                    <button className='amazon-btn'>Deliver to this address</button>
+                    <div className="address__already__update">
+                      <button>Edit</button>
+                      <button onClick={()=>deleteAddress(e._id)}>Delete</button>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="address__already__col">
-                <div>
-                  <span className='address__already__name'>Krishna Prajapati</span>
-                  <span>Alternate Mo. No. 4598752156</span>
-                  <span>Hallapur, Shantinagar</span>
-                  <span>Ballia, UTTAR PRADESH 145875</span>
-                  <span>India</span>
-                  <button className='amazon-btn'>Deliver to this address</button>
-                  <div className="address__already__update">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                  </div>
-                </div>
-              </div>
+                </div>)) :
+                <div>All of your saved address will be displayed here.</div>
+              }
             </div>
           </div>
 
