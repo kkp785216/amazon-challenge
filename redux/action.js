@@ -140,6 +140,13 @@ const action = (action) => {
                 });
                 break;
 
+            case 'PAYMENT_METHOD':
+                dispatch({
+                    type: 'PAYMENT_METHOD',
+                    payload: action.payment
+                });
+                break;
+
             default:
                 break;
         }

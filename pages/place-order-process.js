@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import RedeemIcon from '@mui/icons-material/Redeem';
@@ -11,7 +11,7 @@ import { db } from '../lib/firebase';
 
 const PlaceOrder = () => {
 
-    const { cart, loginUser, address } = useSelector(state => state);
+    const { cart, loginUser, address, payment } = useSelector(state => state);
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -23,6 +23,11 @@ const PlaceOrder = () => {
         }));
     }
 
+    const paymentMethod = {
+        cash: 'Cash on Delivery',
+        card: 'Payment by card'
+    }
+
     useEffect(() => {
         (async () => {
             if (loginUser.logedIn && address === null) {
@@ -31,6 +36,17 @@ const PlaceOrder = () => {
                     dispatch(action({
                         type: 'ADDRESS',
                         address: q1Shapshot.data().address
+                    }));
+                } else {
+                    console.log("No such document!");
+                }
+            }
+            if (loginUser.logedIn && payment.method === null) {
+                const q1Shapshot = await getDoc(doc(db, "profile", loginUser.user._id));
+                if (q1Shapshot.exists()) {
+                    dispatch(action({
+                        type: 'PAYMENT_METHOD',
+                        payment: q1Shapshot.data().payment
                     }));
                 } else {
                     console.log("No such document!");
@@ -74,7 +90,9 @@ const PlaceOrder = () => {
                                         <h5>Payment method</h5>
                                         <Link href='/payment-process'><a className='hyperlink'>Change</a></Link>
                                     </div>
-                                    <span>Pay on delivery</span>
+                                    {payment.method ?
+                                        <span>{paymentMethod[payment.method]}</span> :
+                                        <span>Please select payment method</span>}
                                 </div>
                                 <div className="placeorder__method__gift">
                                     <div className="placeorder__method__heading">

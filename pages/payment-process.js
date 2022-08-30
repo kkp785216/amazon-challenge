@@ -3,20 +3,25 @@ import { useRouter } from 'next/router'
 import LoginFooter from '../Components/LoginFooter'
 import ComponentCheckout from '../Components/ComponentCheckout'
 import LoginFirst from '../Components/LoginFirst'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setDoc, doc } from 'firebase/firestore'
+import { db } from '../lib/firebase'
+import action from '../redux/action'
 
 const Payment = () => {
 
   const router = useRouter();
   const { loginUser } = useSelector(state => state);
+  const [method, setMethod] = useState(null);
+  const dispatch = useDispatch();
 
   const [debitCardForm, setDebitCardForm] = useState({
-    number: '',
-    name: '',
-    month: '01',
-    year: '2022',
+    number: '123412341234',
+    name: 'Krishna Prajapati',
+    month: '07',
+    year: '2024',
     default: false
-  })
+  });
 
   const debitCardSelect = (e) => {
     let debitCard = document.getElementById('payment-card-details');
@@ -33,6 +38,7 @@ const Payment = () => {
       debitCardWrapper.style.height = '0px';
     }
   }
+
   const debitCardDeselect = (e) => {
     let debitCard = document.getElementById('payment-card-details');
     let debitCardWrapper = document.querySelector('.payment__card__details__wrapper');
@@ -44,6 +50,34 @@ const Payment = () => {
       }, 0);
     }
   }
+
+  const handlePay = async (e) => {
+    if (loginUser.logedIn) {
+      try {
+        const paymentRef = doc(db, "profile", loginUser.user._id);
+        await setDoc(paymentRef, {
+          payment: {
+            method: method,
+            card: method === 'card' ? debitCardForm : null,
+            _id: paymentRef.id
+          },
+          user_id: loginUser.user._id
+        }, { merge: true });
+
+        dispatch(action({
+          type: 'PAYMENT_METHOD',
+          payment: {
+            method: method,
+            card: method === 'card' ? debitCardForm : null,
+          }
+        }));
+        router.push('place-order-process');
+      } catch (error) {
+        console.log('Payment method adding faild:', error);
+      }
+    }
+  }
+
   return (<>
     {loginUser.logedIn &&
       <div className="payment__box">
@@ -56,7 +90,7 @@ const Payment = () => {
                 <h3>Another payment method</h3>
                 <div className='payment__card__container' id='payment-debit-card-container'>
                   <div className="payment__debit__card payment__card">
-                    <input name="paymentoption" onChange={debitCardSelect} type="radio" id="payment-debit" />
+                    <input name="paymentoption" onChange={debitCardSelect} method="card" onClick={e => setMethod(e.target.getAttribute('method'))} type="radio" id="payment-debit" />
                     <label htmlFor="payment-debit">
                       <h4>Add Debit/Credit/ATM Card</h4>
                       <span className="payment__guidelines">
@@ -138,7 +172,7 @@ const Payment = () => {
                 </div>
                 <div className='payment__card__container'>
                   <div className="payment__debit__card payment__card">
-                    <input name="paymentoption" onChange={debitCardDeselect} type="radio" id="payment-paydelivery" />
+                    <input name="paymentoption" onChange={debitCardDeselect} type="radio" method="cash" onClick={e => setMethod(e.target.getAttribute('method'))} id="payment-paydelivery" />
                     <label htmlFor="payment-paydelivery">
                       <h4>Pay on Delivery</h4>
                       <span className='payment__guidelines'>Due to high demand and to ensure social distancing, Pay on Delivery is not available.</span>
@@ -147,7 +181,7 @@ const Payment = () => {
                 </div>
               </div>
               <div className="payment__method__section__right">
-                <button onClick={e => router.push('/place-order-process')} className='amazon-btn'>Continue</button>
+                <button onClick={handlePay} className='amazon-btn'>Continue</button>
                 <p>You can review this order before it&apos;s final.</p>
               </div>
             </section>
