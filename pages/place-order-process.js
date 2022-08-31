@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import action from '../redux/action';
 import LoginFirst from '../Components/LoginFirst';
 import { useSelector, useDispatch } from 'react-redux'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, deleteDoc, setDoc, collection } from 'firebase/firestore'
 import { db } from '../lib/firebase';
 
 const PlaceOrder = () => {
@@ -54,6 +54,51 @@ const PlaceOrder = () => {
             }
         })();
     }, [loginUser.logedIn]);
+
+    const handlePlaceOrder = async () => {
+        if (loginUser.logedIn) {
+            try {
+                cart.map(async (e) => {
+                    await deleteDoc(doc(db, "cart", e._id));
+                });
+                const _idArr = [];
+                cart.map(async (e) => {
+                    // Save orders to firestore
+                    const orderRef = doc(collection(db, "order"));
+                    _idArr.push(orderRef.id);
+                    await setDoc(orderRef, {
+                        ...e,
+                        _id: orderRef.id,
+                        user_id: loginUser.user._id,
+                        cart_id: e._id,
+                        delivery_date: new Date().getTime()
+                    });
+                    // save order to local redux store
+                });
+                dispatch(action({
+                    type: 'ADD_ORDER',
+                    order: cart.map((e, i) => {
+                        return {
+                            sno: parseInt(e.sno),
+                            _id: _idArr[i],
+                            cart_id: e._id
+                        }
+                    })
+                }));
+                // After order remove ordered items from the cart
+                cart.map((e) => {
+                    dispatch(action({
+                        type: 'REMOVE_FROM_CART',
+                        sno: parseInt(e.sno),
+                        _id: e._id
+                    }));
+                });
+                router.push('/amazon-thanks');
+            } catch (error) {
+                console.log('Buying items from cart faild:', error);
+            }
+        }
+    }
 
     return (<>
         {loginUser.logedIn &&
@@ -159,7 +204,7 @@ const PlaceOrder = () => {
                         </div>
                         <div className="placeorder__right">
                             <div className="placeorder__summary__card">
-                                <button className="amazon-btn" onClick={() => router.push('/amazon-thanks')}>Place Your Order and pay</button>
+                                <button className="amazon-btn" onClick={handlePlaceOrder}>Place Your Order and pay</button>
                                 <strong className='placeorder__summary__heading'>Order Sammary</strong>
                                 <div className="placeorder__summary__list">
                                     <div className="placeorder__summary__list__row">

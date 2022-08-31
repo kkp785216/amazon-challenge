@@ -147,6 +147,13 @@ const action = (action) => {
                 });
                 break;
 
+            case 'ADD_ORDER':
+                dispatch({
+                    type: 'ADD_ORDER',
+                    payload: action.order
+                });
+                break;
+
             default:
                 break;
         }

@@ -1,11 +1,12 @@
 export const initialState = {
     cart: [],
     loginUser: { logedIn: false, alert: null, message: '' },
-    payment: {method: null, card: {}},
-    address: null
+    payment: { method: null, card: {} },
+    address: null,
+    order: []
 }
 const reducer = (state, action) => {
-    const {type, payload} = action;
+    const { type, payload } = action;
     switch (type) {
         case 'ADD_TO_CART':
             return {
@@ -35,6 +36,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 payment: payload
+            }
+
+        case 'ADD_ORDER':
+            return {
+                ...state,
+                order: payload
             }
 
         default:

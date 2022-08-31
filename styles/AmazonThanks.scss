@@ -49,6 +49,12 @@
                     display: flex;
                     max-width: 300px;
                     justify-content: space-between;
+                    margin-bottom: 16px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
                     .thanks__order__products__date {
                         strong {
                             color: #007600;
@@ -56,21 +62,21 @@
                     }
 
                     .thanks__order__products__item {
-                        img{
+                        img {
                             width: 60px;
                         }
                     }
                 }
             }
 
-            .thanks__order__gotoOrder{
+            .thanks__order__gotoOrder {
                 font-size: 15px;
                 color: #007185;
                 margin-top: 13px;
                 display: flex;
                 align-items: center;
 
-                svg{
+                svg {
                     font-size: 14px;
                     margin-left: 1px;
                     position: relative;
